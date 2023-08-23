@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import VButton from '@/components/button/Button.vue'
+</script>
 
 <template>
-  <div>组件库</div>
+  <v-button round type="primary">test button </v-button>
 </template>
 
 <style scoped></style>
