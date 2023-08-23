@@ -10,6 +10,8 @@
       'is-disabled': disabled
     }"
     :disabled="disabled"
+    :type="nativeType"
+    :autofocus="autofocus"
   >
     <span><slot></slot></span>
   </button>
