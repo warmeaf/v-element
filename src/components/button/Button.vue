@@ -1,5 +1,6 @@
 <template>
   <button
+    ref="_ref"
     class="v-button"
     :class="{
       [`v-button--${type}`]: type,
@@ -20,6 +21,7 @@
 <script setup lang="ts">
 // import type { Props } from './props'
 // defineProps<Props>()
+import { ref } from 'vue'
 
 defineOptions({
   name: 'VButton'
@@ -27,6 +29,11 @@ defineOptions({
 
 import { props } from './props'
 defineProps(props)
+
+const _ref = ref<HTMLButtonElement>()
+defineExpose({
+  ref: _ref
+})
 </script>
 
 <style scoped></style>
