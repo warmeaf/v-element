@@ -17,14 +17,14 @@
   </button>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'VButton'
-}
-</script>
 <script setup lang="ts">
 // import type { Props } from './props'
 // defineProps<Props>()
+
+defineOptions({
+  name: 'VButton'
+})
+
 import { props } from './props'
 defineProps(props)
 </script>
