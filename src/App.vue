@@ -11,7 +11,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-button ref="buttonRef" round type="primary">test button </v-button>
+  <v-button ref="buttonRef" type="success">test button </v-button>
 </template>
 
 <style scoped></style>
