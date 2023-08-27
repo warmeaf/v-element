@@ -36,4 +36,8 @@ defineExpose({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-button {
+  background-color: var(--v-color-primary);
+}
+</style>
