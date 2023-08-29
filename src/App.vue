@@ -11,7 +11,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-button ref="buttonRef" type="success">test button </v-button>
+  <h1>按钮组件</h1>
+  <p>
+    <v-button>test button </v-button>
+    <v-button type="primary">test button </v-button>
+    <v-button type="info">test button </v-button>
+    <v-button type="warning">test button </v-button>
+    <v-button type="danger">test button </v-button>
+    <v-button ref="buttonRef" type="success">test button </v-button>
+  </p>
+
+  <p>
+    <v-button plain round>test button </v-button>
+    <v-button type="primary" plain round>test button </v-button>
+    <v-button type="info" plain round>test button </v-button>
+    <v-button type="warning" plain round>test button </v-button>
+    <v-button type="danger" plain round>test button </v-button>
+    <v-button ref="buttonRef" type="success" plain round>test button </v-button>
+  </p>
 </template>
 
 <style scoped></style>
