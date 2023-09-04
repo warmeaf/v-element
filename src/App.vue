@@ -13,7 +13,7 @@ onMounted(() => {
 <template>
   <h1>按钮组件</h1>
   <p>
-    <v-button>test button </v-button>
+    <v-button size="large">test button </v-button>
     <v-button type="primary">test button </v-button>
     <v-button type="info">test button </v-button>
     <v-button type="warning">test button </v-button>

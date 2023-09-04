@@ -1,19 +1,19 @@
 import type { ButtonHTMLAttributes, PropType } from 'vue'
 
 export function typeValidator(type: string): boolean {
-  return ['default', 'primary', 'info', 'success', 'warning', 'danger'].includes(type)
+  return ['primary', 'info', 'success', 'warning', 'danger'].includes(type)
 }
 
 export function sizeValidator(size: string): boolean {
-  return ['normal', 'mini', 'small', 'large'].includes(size)
+  return ['small', 'large'].includes(size)
 }
 
 export function nativeTypeValidator(nativeType: string): boolean {
   return ['button', 'reset', 'submit'].includes(nativeType)
 }
 
-export type ButtonType = 'default' | 'primary' | 'info' | 'success' | 'warning' | 'danger'
-export type ButtonSize = 'normal' | 'mini' | 'small' | 'large'
+export type ButtonType = 'primary' | 'info' | 'success' | 'warning' | 'danger'
+export type ButtonSize = 'small' | 'large'
 
 export interface Props {
   type?: ButtonType
@@ -22,12 +22,13 @@ export interface Props {
   round?: boolean
   circle?: boolean
   disabled?: boolean
+  autofocus?: boolean
+  nativeType?: ButtonHTMLAttributes['type']
 }
 
 export const props = {
   type: {
     type: String as PropType<ButtonType>,
-    default: 'default',
     validator: typeValidator
   },
   nativeType: {
@@ -37,7 +38,6 @@ export const props = {
   },
   size: {
     type: String as PropType<ButtonSize>,
-    default: 'normal',
     validator: sizeValidator
   },
   plain: {

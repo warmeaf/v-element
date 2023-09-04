@@ -19,14 +19,19 @@
 </template>
 
 <script setup lang="ts">
-// import type { Props } from './props'
-// defineProps<Props>()
 import { ref } from 'vue'
 
 defineOptions({
   name: 'VButton'
 })
 
+// 定义属性类型方式一
+// import type { Props } from './props'
+// withDefaults(defineProps<Props>(), {
+//   nativeType: 'button'
+// })
+
+// 定义属性类型方式二
 import { props } from './props'
 defineProps(props)
 
