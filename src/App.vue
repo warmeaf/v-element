@@ -11,7 +11,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>按钮组件</h1>
+  <h1 class="text-3xl font-bold underline bg-amber-500">按钮组件</h1>
   <p>
     <v-button size="large">test button </v-button>
     <v-button type="primary">test button </v-button>
