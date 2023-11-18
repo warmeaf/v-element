@@ -2,42 +2,16 @@
   /* colors */
   --v-color-white: #ffffff;
   --v-color-black: #000000;
-  
-  --v-color-primary: #409eff;
-  --v-color-primary-light-3: #79bbff;
-  --v-color-primary-light-5: #a0cfff;
-  --v-color-primary-light-7: #c6e2ff;
-  --v-color-primary-light-8: #d9ecff;
-  --v-color-primary-light-9: #ecf5ff;
-  --v-color-primary-dark-2: #337ecc;
-  --v-color-success: #67c23a;
-  --v-color-success-light-3: #95d475;
-  --v-color-success-light-5: #b3e19d;
-  --v-color-success-light-7: #d1edc4;
-  --v-color-success-light-8: #e1f3d8;
-  --v-color-success-light-9: #f0f9eb;
-  --v-color-success-dark-2: #529b2e;
-  --v-color-warning: #e6a23c;
-  --v-color-warning-light-3: #eebe77;
-  --v-color-warning-light-5: #f3d19e;
-  --v-color-warning-light-7: #f8e3c5;
-  --v-color-warning-light-8: #faecd8;
-  --v-color-warning-light-9: #fdf6ec;
-  --v-color-warning-dark-2: #b88230;
-  --v-color-danger: #f56c6c;
-  --v-color-danger-light-3: #f89898;
-  --v-color-danger-light-5: #fab6b6;
-  --v-color-danger-light-7: #fcd3d3;
-  --v-color-danger-light-8: #fde2e2;
-  --v-color-danger-light-9: #fef0f0;
-  --v-color-danger-dark-2: #c45656;
-  --v-color-info: #909399;
-  --v-color-info-light-3: #b1b3b8;
-  --v-color-info-light-5: #c8c9cc;
-  --v-color-info-light-7: #dedfe0;
-  --v-color-info-light-8: #e9e9eb;
-  --v-color-info-light-9: #f4f4f5;
-  --v-color-info-dark-2: #73767a;
+
+  @each $var, $color in (primary, success, warning, danger, info), (#409eff, #67c23a, #e6a23c, #f56c6c, #909399) {
+    --v-color-$(var): $(color);
+
+    @for $i from 3 to 9 by 2 {
+      --v-color-$(var)-light-$(i): mix(#fff, $(color), .$(i))
+    }
+    --v-color-$(var)-light-8: mix(#fff, $(color), .8);
+    --v-color-$(var)-dark-2: mix(#000, $(color), .2);
+  }
 
   --v-bg-color: #ffffff;
   --v-bg-color-page: #f2f3f5;
