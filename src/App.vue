@@ -13,7 +13,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <h3 class="text-3xl font-bold underline bg-amber-500">按钮组件</h3>
+  <div class="mt-4 text-3xl font-bold underline bg-amber-500">按钮组件</div>
   <p>
     <v-button size="large">test button </v-button>
     <v-button type="primary">test button </v-button>
@@ -32,7 +32,7 @@ onMounted(() => {
     <v-button ref="buttonRef" type="success" plain round>test button </v-button>
   </p>
 
-  <h3 class="text-3xl font-bold underline bg-amber-500">折叠组件</h3>
+  <div class="mt-4 text-3xl font-bold underline bg-amber-500">折叠组件</div>
   <p>
     <v-collapse>
       <v-collapse-item name="01" title="test">
