@@ -1,3 +1,5 @@
+export type NameType = number | string
+
 export const collapseItemProps = {
   name: {
     type: [Number, String],
