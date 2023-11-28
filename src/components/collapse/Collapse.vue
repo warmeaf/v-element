@@ -6,14 +6,15 @@
 
 <script lang="ts" setup>
 import { ref, provide } from 'vue'
-import type { NameType } from './types.ts'
+import type { NameType } from './types'
+import { collapseItemContextKey } from './types'
 
 defineOptions({
   name: 'VCollapse'
 })
 
 const activeNames = ref<NameType[]>([])
-const handleItemClick = (item: NameType): volid => {
+const handleItemClick = (item: NameType): void => {
   const index = activeNames.value.indexOf(item)
   if (index > -1) {
     activeNames.value.splice(index, 1)
@@ -21,7 +22,7 @@ const handleItemClick = (item: NameType): volid => {
     activeNames.value.push(item)
   }
 }
-provide('collapseItemContextKey', {
+provide(collapseItemContextKey, {
   activeNames,
   handleItemClick
 })
