@@ -2,3 +2,4 @@
 @import './var.css';
 @import './reset.css';
 @import '@/components/button/style.css';
+@import '@/components/collapse/style.css';
