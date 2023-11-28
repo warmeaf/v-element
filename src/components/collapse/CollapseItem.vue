@@ -5,7 +5,7 @@
       'is-disabled': disabled
     }"
   >
-    <div class="v-collapse-item__header" @click="handleItemClick(props.name)">
+    <div class="v-collapse-item__header" @click="handleItemClick">
       <slot name="header">{{ title }}</slot>
     </div>
     <div v-show="isActive" class="v-collapse-item__content">
@@ -17,7 +17,6 @@
 <script lang="ts" setup>
 import { inject, computed } from 'vue'
 import { collapseItemProps, collapseItemContextKey } from './types'
-import type { collapseItemContextType } from './types'
 
 defineOptions({
   name: 'VCollapseItem'
@@ -25,6 +24,10 @@ defineOptions({
 
 const props = defineProps(collapseItemProps)
 
-const { activeNames, handleItemClick } = inject(collapseItemContextKey) as collapseItemContextType
-const isActive = computed(() => activeNames.value.includes(props.name))
+const collapseItemContext = inject(collapseItemContextKey)
+const isActive = computed(() => collapseItemContext?.activeNames.value.includes(props.name))
+const handleItemClick = () => {
+  if (props.disabled) return
+  collapseItemContext?.handleItemClick(props.name)
+}
 </script>
