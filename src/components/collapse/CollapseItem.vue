@@ -10,9 +10,11 @@
     >
       <slot name="header">{{ title }}</slot>
     </div>
-    <div v-show="isActive" class="v-collapse-item__content">
-      <slot></slot>
-    </div>
+    <Transition name="fade">
+      <div v-show="isActive" class="v-collapse-item__content">
+        <slot></slot>
+      </div>
+    </Transition>
   </div>
 </template>
 
