@@ -36,11 +36,11 @@ onMounted(() => {
   <p>
     <v-collapse>
       <v-collapse-item name="01" title="test">
-        <template #header> 自定义标题 </template>
+        <template #header> 标题1 </template>
         <div>折叠内容01</div>
       </v-collapse-item>
-      <v-collapse-item name="02" title="test">折叠内容02</v-collapse-item>
-      <v-collapse-item name="03" title="test" disabled>折叠内容03</v-collapse-item>
+      <v-collapse-item name="02" title="标题2">折叠内容02</v-collapse-item>
+      <v-collapse-item name="03" title="标题3" disabled>折叠内容03</v-collapse-item>
     </v-collapse>
   </p>
 </template>

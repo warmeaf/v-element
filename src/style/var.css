@@ -60,4 +60,6 @@
   --v-disabled-bg-color: var(--v-fill-color-light);
   --v-disabled-text-color: var(--v-text-color-placeholder);
   --v-disabled-border-color: var(--v-border-color-light);
+
+  --v-transition-duration: .3s;
 }

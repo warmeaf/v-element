@@ -1,11 +1,13 @@
 <template>
-  <div
-    class="v-collapse-item"
-    :class="{
-      'is-disabled': disabled
-    }"
-  >
-    <div class="v-collapse-item__header" @click="handleItemClick">
+  <div class="v-collapse-item">
+    <div
+      class="v-collapse-item__header"
+      :class="{
+        'is-disabled': disabled,
+        'is-active': isActive
+      }"
+      @click="handleItemClick"
+    >
       <slot name="header">{{ title }}</slot>
     </div>
     <div v-show="isActive" class="v-collapse-item__content">
