@@ -5,15 +5,25 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, provide } from 'vue'
-import type { NameType } from './types'
+import { ref, provide, watch } from 'vue'
+import type { NameType, CollapseProps, CollapseEmits } from './types'
 import { collapseItemContextKey } from './types'
 
 defineOptions({
   name: 'VCollapse'
 })
 
-const activeNames = ref<NameType[]>([])
+const props = defineProps<CollapseProps>()
+const emits = defineEmits<CollapseEmits>()
+
+const activeNames = ref(props.modelValue)
+watch(
+  () => props.modelValue,
+  (val) => {
+    activeNames.value = val
+  }
+)
+
 const handleItemClick = (item: NameType): void => {
   const index = activeNames.value.indexOf(item)
   if (index > -1) {
@@ -21,6 +31,9 @@ const handleItemClick = (item: NameType): void => {
   } else {
     activeNames.value.push(item)
   }
+
+  emits('update:modelValue', activeNames.value)
+  emits('change', activeNames.value)
 }
 provide(collapseItemContextKey, {
   activeNames,
