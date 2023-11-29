@@ -16,7 +16,7 @@ defineOptions({
 const props = defineProps<CollapseProps>()
 const emits = defineEmits<CollapseEmits>()
 
-const activeNames = ref(props.modelValue)
+const activeNames = ref<NameType[]>(props.modelValue)
 watch(
   () => props.modelValue,
   (val) => {
@@ -24,12 +24,19 @@ watch(
   }
 )
 
+if (props.accordion && props.modelValue.length > 1) {
+  console.warn('accordion 模式只能有一个激活状态的数据')
+}
 const handleItemClick = (item: NameType): void => {
-  const index = activeNames.value.indexOf(item)
-  if (index > -1) {
-    activeNames.value.splice(index, 1)
+  if (props.accordion) {
+    activeNames.value[0] = activeNames.value[0] === item ? '' : item
   } else {
-    activeNames.value.push(item)
+    const index = activeNames.value.indexOf(item)
+    if (index > -1) {
+      activeNames.value.splice(index, 1)
+    } else {
+      activeNames.value.push(item)
+    }
   }
 
   emits('update:modelValue', activeNames.value)

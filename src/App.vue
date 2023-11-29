@@ -39,7 +39,7 @@ const activeNames = ref(['02'])
 
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">折叠组件</div>
   <p>
-    <v-collapse v-model="activeNames">
+    <v-collapse v-model="activeNames" accordion>
       <v-collapse-item name="01" title="test">
         <template #header> 标题1 </template>
         <div>折叠内容01</div>
