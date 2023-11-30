@@ -41,25 +41,18 @@
       transition: transform var(--v-transition-duration);
     }
   }
-  .v-collapse-item__content {
+  .v-collapse-item__wrapper {
     will-change: height;
-    background-color: var(--v-collapse-content-bg-color);
     overflow: hidden;
-    box-sizing: border-box;
+    background-color: var(--v-collapse-content-bg-color);
+    border-bottom: 1px solid var(--v-collapse-border-color);
+  }
+  .v-collapse-item__content {
+    background-color: var(--v-collapse-content-bg-color);
     font-size: var(--v-collapse-content-font-size);
     color: var(--v-collapse-content-text-color);
-    border-bottom: 1px solid var(--v-collapse-border-color);
     padding-bottom: 25px;
   }
-  /* .slide-enter-active, .slide-leave-active {
+  .slide-enter-active, .slide-leave-active {
     transition: height var(--v-transition-duration);
-  } */
-  .fade-enter-from,.fade-leave-to {
-    opacity: 0;
-  }
-  .fade-enter-active,.fade-leave-active {
-    transition: opacity var(--v-transition-duration);
-  }
-  .fade-enter-to,.fade-leave-from {
-    opacity: 1;
   }

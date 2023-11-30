@@ -10,9 +10,11 @@
     >
       <slot name="header">{{ title }}</slot>
     </div>
-    <Transition name="fade">
-      <div v-show="isActive" class="v-collapse-item__content">
-        <slot></slot>
+    <Transition name="slide" v-on="transitionEvents">
+      <div v-show="isActive" class="v-collapse-item__wrapper">
+        <div class="v-collapse-item__content">
+          <slot></slot>
+        </div>
       </div>
     </Transition>
   </div>
@@ -34,5 +36,26 @@ const isActive = computed(() => collapseItemContext?.activeNames.value.includes(
 const handleItemClick = () => {
   if (props.disabled) return
   collapseItemContext?.handleItemClick(props.name)
+}
+
+const transitionEvents: Record<string, (el: HTMLElement) => void> = {
+  'before-enter': (el) => {
+    el.style.height = '0px'
+  },
+  enter: (el) => {
+    el.style.height = `${el.scrollHeight}px`
+  },
+  'after-enter': (el) => {
+    el.style.height = 'revert'
+  },
+  'before-leave': (el) => {
+    el.style.height = `${el.scrollHeight}px`
+  },
+  leave: (el) => {
+    el.style.height = '0px'
+  },
+  'after-leave': (el) => {
+    el.style.height = 'revert'
+  }
 }
 </script>
