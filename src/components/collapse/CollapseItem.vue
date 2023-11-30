@@ -20,13 +20,14 @@
 
 <script lang="ts" setup>
 import { inject, computed } from 'vue'
-import { collapseItemProps, collapseItemContextKey } from './types'
+import { collapseItemContextKey } from './types'
+import type { CollapseItemProps } from './types'
 
 defineOptions({
   name: 'VCollapseItem'
 })
 
-const props = defineProps(collapseItemProps)
+const props = defineProps<CollapseItemProps>()
 
 const collapseItemContext = inject(collapseItemContextKey)
 const isActive = computed(() => collapseItemContext?.activeNames.value.includes(props.name))

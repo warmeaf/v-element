@@ -12,24 +12,17 @@ export interface CollapseEmits {
   (e: 'change', value: NameType[]): void
 }
 
-export const collapseItemProps = {
-  name: {
-    type: [Number, String],
-    default: '',
-    required: true
-  },
-  title: {
-    type: String,
-    required: false
-  },
-  disabled: {
-    type: Boolean,
-    required: false
-  }
+export interface CollapseItemProps {
+  // 唯一标识
+  name: NameType
+  // 标题
+  title?: string
+  // 是否禁用
+  disabled?: boolean
 }
 
-export interface collapseItemContextType {
+export interface CollapseItemContextType {
   activeNames: Ref<NameType[]>
   handleItemClick: (name: NameType) => void
 }
-export const collapseItemContextKey = Symbol() as InjectionKey<collapseItemContextType>
+export const collapseItemContextKey = Symbol() as InjectionKey<CollapseItemContextType>
