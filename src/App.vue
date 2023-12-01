@@ -8,8 +8,8 @@ import VIcon from '@/components/icon/Icon.vue'
 // 为什么这么写？参考：https://www.douyin.com/user/self?modal_id=7251216368719220023&showTab=favorite_collection
 const buttonRef = ref<InstanceType<typeof VButton> | null>()
 onMounted(() => {
-  console.log(buttonRef.value)
-  console.log(buttonRef.value?.ref)
+  // console.log(buttonRef.value)
+  // console.log(buttonRef.value?.ref)
 })
 
 const activeNames = ref(['02'])
@@ -52,7 +52,7 @@ const activeNames = ref(['02'])
   </p>
 
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">图标组件</div>
-  <v-icon></v-icon>
+  <v-icon icon="fa-user-secret"></v-icon>
 </template>
 
 <style scoped></style>
