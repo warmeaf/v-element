@@ -59,5 +59,13 @@ export const props = {
   autofocus: {
     type: Boolean,
     default: false
+  },
+  icon: {
+    type: String,
+    default: ''
+  },
+  loading: {
+    type: Boolean,
+    default: false
   }
 }

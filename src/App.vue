@@ -23,17 +23,17 @@ const icon = ref('fa-spinner')
 <template>
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">按钮组件</div>
   <p>
-    <v-button size="large">test button </v-button>
+    <v-button size="large" icon="volume-high">test button </v-button>
     <v-button type="primary">test button </v-button>
     <v-button type="info">test button </v-button>
-    <v-button type="warning">test button </v-button>
+    <v-button type="warning" loading>test button </v-button>
     <v-button type="danger">test button </v-button>
     <v-button ref="buttonRef" type="success">test button </v-button>
   </p>
 
   <p>
     <v-button plain round>test button </v-button>
-    <v-button type="primary" plain round>test button </v-button>
+    <v-button type="primary" plain round icon="arrow-up">test button </v-button>
     <v-button type="info" plain round>test button </v-button>
     <v-button type="warning" plain round>test button </v-button>
     <v-button type="danger" plain round>test button </v-button>

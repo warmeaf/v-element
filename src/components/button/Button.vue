@@ -8,18 +8,21 @@
       'is-plain': plain,
       'is-round': round,
       'is-circle': circle,
-      'is-disabled': disabled
+      'is-disabled': disabled || loading
     }"
     :disabled="disabled"
     :type="nativeType"
     :autofocus="autofocus"
   >
+    <v-icon v-if="icon" :icon="icon" />
+    <v-icon v-if="loading" icon="spinner" spin />
     <span><slot></slot></span>
   </button>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import VIcon from '@/components/icon/Icon.vue'
 
 defineOptions({
   name: 'VButton'

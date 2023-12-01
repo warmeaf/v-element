@@ -41,6 +41,9 @@
   & + & {
     margin-left: 12px;
   }
+  [class*=v-icon] + span {
+    margin-left: 6px;
+  }
   &:hover,
   &:focus {
     color: var(--v-button-hover-text-color);
