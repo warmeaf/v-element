@@ -38,6 +38,7 @@
       }
     }
     .header-angle {
+      margin: 0 8px 0 auto;
       transition: transform var(--v-transition-duration);
     }
   }

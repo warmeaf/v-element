@@ -9,6 +9,7 @@
       @click="handleItemClick"
     >
       <slot name="header">{{ title }}</slot>
+      <v-icon icon="chevron-right" class="header-angle" />
     </div>
     <Transition name="slide" v-on="transitionEvents">
       <div v-show="isActive" class="v-collapse-item__wrapper">
@@ -24,6 +25,7 @@
 import { inject, computed } from 'vue'
 import { collapseItemContextKey } from './types'
 import type { CollapseItemProps } from './types'
+import VIcon from '@/components/icon/Icon.vue'
 
 defineOptions({
   name: 'VCollapseItem'
