@@ -17,7 +17,7 @@ const activeNames = ref(['02'])
 //   console.log(value)
 // }
 
-const icon = ref('fa-user-secret')
+const icon = ref('fa-spinner')
 </script>
 
 <template>
@@ -54,8 +54,8 @@ const icon = ref('fa-user-secret')
   </p>
 
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">图标组件</div>
-  <v-icon :icon="icon" type="danger"></v-icon>
-  <!-- <v-icon :icon="icon" color="green"></v-icon> -->
+  <v-icon :icon="icon" type="primary" size="2xl"></v-icon>
+  <v-icon :icon="icon" color="green"></v-icon>
 </template>
 
 <style scoped></style>
