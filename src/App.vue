@@ -55,7 +55,7 @@ const icon = ref('fa-spinner')
 
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">图标组件</div>
   <v-icon :icon="icon" type="primary" size="2xl"></v-icon>
-  <v-icon :icon="icon" color="green"></v-icon>
+  <div><v-icon :icon="icon" color="green"></v-icon>你好</div>
 </template>
 
 <style scoped></style>
