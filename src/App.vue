@@ -16,6 +16,8 @@ const activeNames = ref(['02'])
 // const handleCollapseChange = (value: string[]) => {
 //   console.log(value)
 // }
+
+const icon = ref('fa-user-secret')
 </script>
 
 <template>
@@ -52,7 +54,8 @@ const activeNames = ref(['02'])
   </p>
 
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">图标组件</div>
-  <v-icon icon="fa-user-secret"></v-icon>
+  <v-icon :icon="icon" type="danger"></v-icon>
+  <!-- <v-icon :icon="icon" color="green"></v-icon> -->
 </template>
 
 <style scoped></style>

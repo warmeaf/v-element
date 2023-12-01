@@ -42,4 +42,6 @@ export interface IconProps {
   beatFade?: boolean
   spinPulse?: boolean
   spinReverse?: boolean
+  type?: 'primary' | 'info' | 'success' | 'warning' | 'danger'
+  color?: string
 }
