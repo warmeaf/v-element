@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import VButton from '@/components/button/Button.vue'
 import VCollapse from '@/components/collapse/Collapse.vue'
 import VCollapseItem from '@/components/collapse/CollapseItem.vue'
+import VIcon from '@/components/icon/Icon.vue'
 
 // 为什么这么写？参考：https://www.douyin.com/user/self?modal_id=7251216368719220023&showTab=favorite_collection
 const buttonRef = ref<InstanceType<typeof VButton> | null>()
@@ -49,6 +50,9 @@ const activeNames = ref(['02'])
     </v-collapse>
     {{ activeNames }}
   </p>
+
+  <div class="mt-4 text-3xl font-bold underline bg-amber-500">图标组件</div>
+  <v-icon></v-icon>
 </template>
 
 <style scoped></style>
