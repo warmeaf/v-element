@@ -1,4 +1,5 @@
 .v-icon {
+  display: inline-flex;
   font-size: inherit;
   color: inherit;
 }
