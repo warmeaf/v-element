@@ -5,7 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, provide, watch } from 'vue'
+import { provide, computed } from 'vue'
+// import { ref, watch } from 'vue'
 import type { NameType, CollapseProps, CollapseEmits } from './types'
 import { collapseItemContextKey } from './types'
 
@@ -16,13 +17,17 @@ defineOptions({
 const props = defineProps<CollapseProps>()
 const emits = defineEmits<CollapseEmits>()
 
-const activeNames = ref<NameType[]>(props.modelValue)
-watch(
-  () => props.modelValue,
-  (val) => {
-    activeNames.value = val
-  }
-)
+// 写法1
+// const activeNames = ref<NameType[]>(props.modelValue)
+// watch(
+//   () => props.modelValue,
+//   (val) => {
+//     activeNames.value = val
+//   }
+// )
+
+// 写法2
+const activeNames = computed(() => props.modelValue)
 
 if (props.accordion && props.modelValue.length > 1) {
   console.warn('accordion 模式只能有一个激活状态的数据')

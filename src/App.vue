@@ -13,6 +13,9 @@ onMounted(() => {
 })
 
 const activeNames = ref(['02'])
+// setTimeout(() => {
+//   activeNames.value = ['01', '02']
+// }, 2000)
 // const handleCollapseChange = (value: string[]) => {
 //   console.log(value)
 // }
