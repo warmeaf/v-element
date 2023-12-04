@@ -1,5 +1,9 @@
-import { expect, test, describe, vi } from 'vitest'
-import { testFn } from './utils'
+import { expect, test, describe, vi, Mocked } from 'vitest'
+import { testFn, request } from './utils'
+
+import axios from 'axios'
+vi.mock('axios')
+const mockedAxios = axios as Mocked<typeof axios>
 
 describe('test common', () => {
   test('test common matcher', () => {
@@ -42,5 +46,13 @@ describe('test fn', () => {
     expect(spy).toHaveBeenCalled()
     obj.getName()
     expect(spy).toHaveBeenCalledTimes(2)
+  })
+})
+
+describe('mock third party moudle', () => {
+  test('test axios', async () => {
+    mockedAxios.get.mockResolvedValue({ data: 123 })
+    const data = await request()
+    expect(data).toBe(123)
   })
 })
