@@ -1,4 +1,4 @@
-import { describe, test } from 'vitest'
+import { describe, test, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Button from './Button.vue'
 
@@ -14,5 +14,7 @@ describe('Button.vue', () => {
     })
 
     console.log(wrapper.html())
+    expect(wrapper.classes()).toContain('v-button--primary')
+    expect(wrapper.get('button').text()).toBe('button')
   })
 })
