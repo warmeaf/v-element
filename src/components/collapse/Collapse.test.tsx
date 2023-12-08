@@ -1,13 +1,14 @@
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import VCollapse from './Collapse.vue'
 import VCollapseItem from './CollapseItem.vue'
 
 describe('Collapse.vue', () => {
   test('collapse basice', async () => {
+    const onChange = vi.fn()
     const wrapper = mount(
       () => (
-        <VCollapse modelValue={['a']}>
+        <VCollapse modelValue={['a']} onChange={onChange}>
           <VCollapseItem title="标题a" name="a">
             内容a
           </VCollapseItem>
@@ -47,8 +48,10 @@ describe('Collapse.vue', () => {
     await headers[0].trigger('click')
     console.log(contents[0].html())
     expect(contents[0].isVisible()).toBeFalsy()
+    expect(onChange).toBeCalledWith([])
     await headers[1].trigger('click')
     expect(contents[1].isVisible()).toBeTruthy()
+    expect(onChange).toBeCalledWith(['b'])
 
     // disabled
     expect(headers[2].classes()).toContain('is-disabled')
