@@ -16,9 +16,9 @@ const activeNames = ref(['02'])
 // setTimeout(() => {
 //   activeNames.value = ['01', '02']
 // }, 2000)
-// const handleCollapseChange = (value: string[]) => {
-//   console.log(value)
-// }
+const handleCollapseChange = (value: string[]) => {
+  console.log(value)
+}
 
 const icon = ref('fa-spinner')
 </script>
@@ -45,7 +45,7 @@ const icon = ref('fa-spinner')
 
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">折叠组件</div>
   <p>
-    <v-collapse v-model="activeNames" accordion>
+    <v-collapse v-model="activeNames" accordion @change="handleCollapseChange">
       <v-collapse-item name="01" title="test">
         <template #header> 标题1 </template>
         <div>折叠内容01</div>
