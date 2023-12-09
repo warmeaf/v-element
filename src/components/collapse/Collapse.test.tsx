@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import VCollapse from './Collapse.vue'
 import VCollapseItem from './CollapseItem.vue'
@@ -80,5 +80,113 @@ describe('Collapse.vue', () => {
     await headers[0].trigger('click')
     await headers[1].trigger('click')
     expect(wrapper.vm.value).toEqual(['a', 'b'])
+  })
+
+  test('禁用', async () => {
+    const value = ref(['a'])
+
+    const template = `
+     <v-collapse v-model="value">
+      <v-collapse-item title="testa" name="a">testa</v-collapse-item>
+      <v-collapse-item title="testb" name="b" disabled>testb</v-collapse-item>
+     </v-collapse>
+    `
+    const wrapper = mount(
+      {
+        components: {
+          [VCollapse.name]: VCollapse,
+          [VCollapseItem.name]: VCollapseItem
+        },
+        template,
+        setup() {
+          return {
+            value
+          }
+        }
+      },
+      {
+        global: {
+          stubs: ['VIcon']
+        },
+        attachTo: document.body
+      }
+    )
+
+    const headers = wrapper.findAll('.v-collapse-item__header')
+    expect(headers[1].classes()).toContain('is-disabled')
+    await headers[1].trigger('click')
+    expect(wrapper.vm.value).toEqual(['a'])
+  })
+
+  test('手风琴模式', async () => {
+    const value = ref(['a'])
+
+    const template = `
+     <v-collapse v-model="value" accordion>
+      <v-collapse-item title="testa" name="a">testa</v-collapse-item>
+      <v-collapse-item title="testb" name="b">testb</v-collapse-item>
+     </v-collapse>
+    `
+    const wrapper = mount(
+      {
+        components: {
+          [VCollapse.name]: VCollapse,
+          [VCollapseItem.name]: VCollapseItem
+        },
+        template,
+        setup() {
+          return {
+            value
+          }
+        }
+      },
+      {
+        global: {
+          stubs: ['VIcon']
+        },
+        attachTo: document.body
+      }
+    )
+
+    const headers = wrapper.findAll('.v-collapse-item__header')
+    await headers[1].trigger('click')
+    expect(wrapper.vm.value).toEqual(['b'])
+  })
+
+  test('change 事件', async () => {
+    const value = ref(['a'])
+    const change = vi.fn()
+
+    const template = `
+     <v-collapse v-model="value" @change="change">
+      <v-collapse-item title="testa" name="a">testa</v-collapse-item>
+      <v-collapse-item title="testb" name="b">testb</v-collapse-item>
+     </v-collapse>
+    `
+    const wrapper = mount(
+      {
+        components: {
+          [VCollapse.name]: VCollapse,
+          [VCollapseItem.name]: VCollapseItem
+        },
+        template,
+        setup() {
+          return {
+            value,
+            change
+          }
+        }
+      },
+      {
+        global: {
+          stubs: ['VIcon']
+        },
+        attachTo: document.body
+      }
+    )
+
+    const headers = wrapper.findAll('.v-collapse-item__header')
+    await headers[1].trigger('click')
+    expect(change).toHaveBeenCalledWith(['a', 'b'])
   })
 })
