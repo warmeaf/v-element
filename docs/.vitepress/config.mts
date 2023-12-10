@@ -1,17 +1,18 @@
 import { defineConfig } from 'vitepress'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import { fileURLToPath, URL } from 'node:url'
+import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'My Awesome Project',
   description: 'A VitePress Site',
   vite: {
-    plugins: [vueJsx()],
-    resolve: {
-      alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url))
-      }
+    plugins: [vueJsx()]
+  },
+  markdown: {
+    config(md) {
+      md.use(containerPreview)
+      md.use(componentPreview)
     }
   },
   themeConfig: {
