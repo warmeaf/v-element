@@ -1,6 +1,6 @@
 /*@import https://cn.vitejs.dev/guide/features.html#import-inlining-and-rebasing */
 @import './var.css';
 @import './reset.css';
-@import '@/components/button/style.css';
-@import '@/components/collapse/style.css';
-@import '@/components/icon/style.css';
+@import '../components/button/style.css';
+@import '../components/collapse/style.css';
+@import '../components/icon/style.css';

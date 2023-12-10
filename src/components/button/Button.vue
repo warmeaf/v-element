@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import VIcon from '@/components/icon/Icon.vue'
+import VIcon from '../icon/Icon.vue'
 
 defineOptions({
   name: 'VButton'
