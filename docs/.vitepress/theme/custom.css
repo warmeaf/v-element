@@ -2,7 +2,14 @@
   --vp-c-brand-1: var(--v-color-primary);
   --vp-c-brand-2: var(--v-color-primary-light-3);
   --vp-c-brand-3: var(--v-color-primary-dark-2);
-  --vp-c-brand-soft: #265F99;
+
+  --vp-c-warning-1: var(--v-color-warning);
+  --vp-c-warning-2: var(--v-color-warning-light-3);
+  --vp-c-warning-3: var(--v-color-warning-dark-2);
+
+  --vp-c-danger-1: var(--v-color-danger);
+  --vp-c-warning-2: var(--v-color-danger-light-3);
+  --vp-c-danger-3: var(--v-color-danger-dark-2);
 }
 
 body {
