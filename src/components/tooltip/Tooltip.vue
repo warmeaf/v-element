@@ -57,6 +57,20 @@ const attachEvents = () => {
 }
 attachEvents()
 
+// 根据 trigger 的值动态绑定事件
+watch(
+  () => props.trigger,
+  (newValue, oldValue) => {
+    if (newValue !== oldValue) {
+      // 卸载旧的事件
+      delete events['click']
+      delete events['mouseenter']
+      delete outerEvents['mouseleave']
+      attachEvents()
+    }
+  }
+)
+
 watch(
   isOpen,
   (newValue) => {

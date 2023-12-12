@@ -28,6 +28,7 @@ import type { Instance } from '@popperjs/core'
 const triggerNode = ref<InstanceType<typeof VButton> | null>()
 const overlayNode = ref<HTMLElement>()
 let popperInstance: Instance | null = null
+const trigger = ref<'hover' | 'click'>('hover')
 onMounted(() => {
   if (triggerNode.value?.ref && overlayNode.value) {
     popperInstance = createPopper(triggerNode.value.ref, overlayNode.value, {
@@ -39,6 +40,7 @@ setTimeout(() => {
   popperInstance?.setOptions({
     placement: 'top'
   })
+  trigger.value = 'click'
 }, 2000)
 </script>
 
@@ -84,7 +86,7 @@ setTimeout(() => {
   <div class="p-4">
     <v-button ref="triggerNode" type="primary">test button</v-button>
     <div ref="overlayNode">hello</div>
-    <v-tooltip content="hello">
+    <v-tooltip content="hello" :trigger="trigger">
       <v-button type="primary">button</v-button>
     </v-tooltip>
   </div>
