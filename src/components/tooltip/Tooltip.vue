@@ -1,6 +1,6 @@
 <template>
   <div class="v-tooltip">
-    <div ref="triggerNode" class="v-tooltip__trigger" @click="togglePopper">
+    <div ref="triggerNode" class="v-tooltip__trigger" v-on="events">
       <slot></slot>
     </div>
     <div v-if="isOpen" ref="popperNode" class="v-tooltip__popper">
@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, reactive } from 'vue'
 import type { TooltipProps, TooltipEmits } from './types'
 import { createPopper } from '@popperjs/core'
 import type { Instance } from '@popperjs/core'
@@ -22,7 +22,8 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<TooltipProps>(), {
-  placement: 'top'
+  placement: 'top',
+  trigger: 'hover'
 })
 
 const emits = defineEmits<TooltipEmits>()
@@ -35,6 +36,25 @@ const togglePopper = () => {
   isOpen.value = !isOpen.value
   emits('visible-change', isOpen.value)
 }
+
+const open = () => {
+  isOpen.value = true
+  emits('visible-change', true)
+}
+const close = () => {
+  isOpen.value = false
+  emits('visible-change', false)
+}
+const events: Record<string, Function> = reactive({})
+const attachEvents = () => {
+  if (props.trigger === 'hover') {
+    events['mouseenter'] = open
+    events['mouseleave'] = close
+  } else if (props.trigger === 'click') {
+    events['click'] = togglePopper
+  }
+}
+attachEvents()
 
 watch(
   isOpen,
