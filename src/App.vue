@@ -4,6 +4,7 @@ import VButton from '@/components/button/Button.vue'
 import VCollapse from '@/components/collapse/Collapse.vue'
 import VCollapseItem from '@/components/collapse/CollapseItem.vue'
 import VIcon from '@/components/icon/Icon.vue'
+import VTooltip from '@/components/tooltip/Tooltip.vue'
 
 // 为什么这么写？参考：https://www.douyin.com/user/self?modal_id=7251216368719220023&showTab=favorite_collection
 const buttonRef = ref<InstanceType<typeof VButton> | null>()
@@ -21,6 +22,24 @@ const handleCollapseChange = (value: string[]) => {
 }
 
 const icon = ref('fa-spinner')
+
+import { createPopper } from '@popperjs/core'
+import type { Instance } from '@popperjs/core'
+const triggerNode = ref<InstanceType<typeof VButton> | null>()
+const overlayNode = ref<HTMLElement>()
+let popperInstance: Instance | null = null
+onMounted(() => {
+  if (triggerNode.value?.ref && overlayNode.value) {
+    popperInstance = createPopper(triggerNode.value.ref, overlayNode.value, {
+      placement: 'right'
+    })
+  }
+})
+setTimeout(() => {
+  popperInstance?.setOptions({
+    placement: 'top'
+  })
+}, 2000)
 </script>
 
 <template>
@@ -60,6 +79,15 @@ const icon = ref('fa-spinner')
   <v-icon :icon="icon" type="primary" size="2xl"></v-icon>
   <br />
   <div class="inline-flex items-center"><v-icon :icon="icon" color="green"></v-icon>你好</div>
+
+  <div class="mt-4 text-3xl font-bold underline bg-amber-500">提示组件</div>
+  <div class="p-4">
+    <v-button ref="triggerNode" type="primary">test button</v-button>
+    <div ref="overlayNode">hello</div>
+    <v-tooltip content="hello">
+      <v-button type="primary">button</v-button>
+    </v-tooltip>
+  </div>
 </template>
 
 <style scoped></style>
