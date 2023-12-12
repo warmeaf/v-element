@@ -1,5 +1,5 @@
 <template>
-  <div class="v-tooltip">
+  <div class="v-tooltip" v-on="outerEvents">
     <div ref="triggerNode" class="v-tooltip__trigger" v-on="events">
       <slot></slot>
     </div>
@@ -46,10 +46,11 @@ const close = () => {
   emits('visible-change', false)
 }
 const events: Record<string, Function> = reactive({})
+const outerEvents: Record<string, Function> = reactive({})
 const attachEvents = () => {
   if (props.trigger === 'hover') {
     events['mouseenter'] = open
-    events['mouseleave'] = close
+    outerEvents['mouseleave'] = close
   } else if (props.trigger === 'click') {
     events['click'] = togglePopper
   }
