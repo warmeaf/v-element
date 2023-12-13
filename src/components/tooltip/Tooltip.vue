@@ -1,5 +1,5 @@
 <template>
-  <div class="v-tooltip" v-on="outerEvents">
+  <div ref="popperWrapperNode" class="v-tooltip" v-on="outerEvents">
     <div ref="triggerNode" class="v-tooltip__trigger" v-on="events">
       <slot></slot>
     </div>
@@ -16,6 +16,7 @@ import { ref, watch, reactive } from 'vue'
 import type { TooltipProps, TooltipEmits } from './types'
 import { createPopper } from '@popperjs/core'
 import type { Instance } from '@popperjs/core'
+import useClickOutside from '../../hooks/useClickOutside'
 
 defineOptions({
   name: 'VTooltip'
@@ -31,6 +32,7 @@ const emits = defineEmits<TooltipEmits>()
 const isOpen = ref(false)
 const triggerNode = ref<HTMLElement | null>(null)
 const popperNode = ref<HTMLElement | null>(null)
+const popperWrapperNode = ref<HTMLElement | null>(null)
 let popperInstance: Instance | null = null
 const togglePopper = () => {
   isOpen.value = !isOpen.value
@@ -56,6 +58,13 @@ const attachEvents = () => {
   }
 }
 attachEvents()
+
+// 实现外侧点击
+useClickOutside(popperWrapperNode, () => {
+  if (props.trigger === 'click' && isOpen.value) {
+    close()
+  }
+})
 
 // 根据 trigger 的值动态绑定事件
 watch(
