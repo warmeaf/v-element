@@ -3,16 +3,18 @@
     <div ref="triggerNode" class="v-tooltip__trigger" v-on="events">
       <slot></slot>
     </div>
-    <div v-if="isOpen" ref="popperNode" class="v-tooltip__popper">
-      <slot name="content">
-        {{ content }}
-      </slot>
-    </div>
+    <Transition name="fade">
+      <div v-if="isOpen" ref="popperNode" class="v-tooltip__popper">
+        <slot name="content">
+          {{ content }}
+        </slot>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch, reactive } from 'vue'
+import { ref, watch, reactive, onUnmounted } from 'vue'
 import type { TooltipProps, TooltipEmits } from './types'
 import { createPopper } from '@popperjs/core'
 import type { Instance } from '@popperjs/core'
@@ -82,7 +84,7 @@ watch(
 
 watch(
   isOpen,
-  (newValue) => {
+  async (newValue) => {
     if (newValue) {
       if (triggerNode.value && popperNode.value) {
         popperInstance = createPopper(triggerNode.value, popperNode.value, {
@@ -90,11 +92,15 @@ watch(
         })
       }
     } else {
-      popperInstance?.destroy()
+      // popperInstance?.destroy()
     }
   },
   {
     flush: 'post'
   }
 )
+
+onUnmounted(() => {
+  popperInstance?.destroy()
+})
 </script>

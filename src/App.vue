@@ -86,7 +86,7 @@ setTimeout(() => {
   <div class="p-4">
     <v-button ref="triggerNode" type="primary">test button</v-button>
     <div ref="overlayNode">hello</div>
-    <v-tooltip content="hello" :trigger="trigger">
+    <v-tooltip content="hello" :trigger="trigger" placement="right">
       <v-button type="primary">button</v-button>
     </v-tooltip>
   </div>
