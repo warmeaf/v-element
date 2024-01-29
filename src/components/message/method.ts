@@ -8,7 +8,8 @@ export const createMessage = (props: CreateMessageProps) => {
   // render(vnode, document.body)
 
   const onDestroy = () => {
-    // 这段代码是如何发挥作用的呢？
+    // 这段代码是如何发挥作用的呢？看源码 render 函数的实现
+    // https://github.com/vuejs/core/blob/d276a4f3e914aaccc291f7b2513e5d978919d0f9/packages/runtime-core/src/renderer.ts#L2356
     render(null, container)
   }
   const newProps = { ...props, onDestroy }
