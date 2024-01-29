@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import type { MessageProps } from './types'
 import RenderVnode from '../common/RenderVnode'
 import VIcon from '../icon/Icon.vue'
@@ -50,4 +50,8 @@ onMounted(() => {
 const handleClose = () => {
   visible.value = false
 }
+
+watch(visible, (newVal) => {
+  !newVal && props.onDestroy()
+})
 </script>

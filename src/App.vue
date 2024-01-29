@@ -44,7 +44,8 @@ onMounted(() => {
   })
   createMessage({
     message: 'hello',
-    duration: 0
+    duration: 0,
+    showClose: true
   })
 })
 setTimeout(() => {
