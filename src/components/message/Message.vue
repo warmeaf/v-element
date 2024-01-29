@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="visible"
+    v-show="visible"
     class="v-message"
     :class="{
       [`v-message--${type}`]: type,
