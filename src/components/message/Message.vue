@@ -13,7 +13,7 @@
       </slot>
     </div>
     <div v-if="showClose" class="v-message__close">
-      <v-icon icon="xmark" />
+      <v-icon @click.stop="handleClose" icon="xmark" />
     </div>
   </div>
 </template>
@@ -46,4 +46,8 @@ onMounted(() => {
   visible.value = true
   startTimer()
 })
+
+const handleClose = () => {
+  visible.value = false
+}
 </script>

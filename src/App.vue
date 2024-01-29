@@ -93,7 +93,7 @@ setTimeout(() => {
   </div>
 
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">message组件</div>
-  <v-message message="hello"></v-message>
+  <v-message message="hello" :duration="0" show-close></v-message>
 </template>
 
 <style scoped></style>
