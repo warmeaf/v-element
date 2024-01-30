@@ -8,4 +8,10 @@ export interface MessageProps {
   onDestroy: () => void // 消息被销毁时的回调函数
 }
 
+export interface MessageContext {
+  id: string
+  vnode: VNode
+  props: MessageProps
+}
+
 export type CreateMessageProps = Omit<MessageProps, 'onDestroy'>
