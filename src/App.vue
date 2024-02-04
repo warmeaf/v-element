@@ -40,13 +40,22 @@ onMounted(() => {
 
   createMessage({
     message: 'hello hello hello',
-    duration: 0
+    duration: 0,
+    showClose: true
   })
   createMessage({
     message: 'hello',
     duration: 0,
     showClose: true
   })
+  // createMessage({
+  //   message: 'hello hello hello',
+  //   duration: 0
+  // })
+  // createMessage({
+  //   message: 'hello hello hello',
+  //   duration: 0
+  // })
 })
 setTimeout(() => {
   popperInstance?.setOptions({
