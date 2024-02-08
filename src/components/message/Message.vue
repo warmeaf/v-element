@@ -11,7 +11,7 @@
   >
     <div class="v-message__content">
       <slot>
-        {{ offset }} - {{ lastOffset }} - {{ bottomOffset }}
+        {{ offset }} - {{ topOffset }} - {{ bottomOffset }}
         <render-vnode :vnode="message" />
       </slot>
     </div>
@@ -26,7 +26,7 @@ import { ref, onMounted, watch, nextTick, computed } from 'vue'
 import type { MessageProps } from './types'
 import RenderVnode from '../common/RenderVnode'
 import VIcon from '../icon/Icon.vue'
-import { getLastMessage, getLastBottomOffset } from './method'
+import { getLastBottomOffset } from './method'
 
 defineOptions({
   name: 'VMessage'
@@ -45,11 +45,11 @@ const messageRef = ref<HTMLDivElement | null>()
 // 消息窗体的高度
 const height = ref(0)
 // 向上的偏移量
-const lastOffset = computed(() => getLastBottomOffset(props.id) + props.offset)
+const topOffset = computed(() => getLastBottomOffset(props.id) + props.offset)
 // 预留给下一个窗体的偏移量
-const bottomOffset = computed(() => lastOffset.value + height.value)
+const bottomOffset = computed(() => topOffset.value + height.value)
 const cssStyle = computed(() => ({
-  top: lastOffset.value + 'px'
+  top: topOffset.value + 'px'
 }))
 
 const visible = ref(false)
