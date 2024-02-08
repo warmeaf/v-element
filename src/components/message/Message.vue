@@ -26,6 +26,7 @@ import type { MessageProps } from './types'
 import RenderVnode from '../common/RenderVnode'
 import VIcon from '../icon/Icon.vue'
 import { getLastBottomOffset } from './method'
+import useEventListener from '../..//hooks/useEventListener'
 
 defineOptions({
   name: 'VMessage'
@@ -71,6 +72,13 @@ const handleClose = () => {
   visible.value = false
 }
 
+const keydown = (e: Event) => {
+  const event = e as KeyboardEvent
+  if (event.key === 'Escape') {
+    handleClose()
+  }
+}
+useEventListener(document, 'keydown', keydown)
 watch(visible, (newVal) => {
   !newVal && props.onDestroy()
 })
