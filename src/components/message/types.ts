@@ -8,6 +8,7 @@ export interface MessageProps {
   onDestroy: () => void // 消息被销毁时的回调函数
   offset?: number // 消息的偏移量
   id: string
+  zIndex: number
 }
 
 export interface MessageContext {
@@ -18,4 +19,4 @@ export interface MessageContext {
   destory: () => void
 }
 
-export type CreateMessageProps = Omit<MessageProps, 'onDestroy' | 'id'>
+export type CreateMessageProps = Omit<MessageProps, 'onDestroy' | 'id' | 'zIndex'>

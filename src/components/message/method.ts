@@ -1,10 +1,11 @@
 import type { CreateMessageProps, MessageContext } from './types'
 import { h, render, shallowReactive } from 'vue'
 import Message from './Message.vue'
-import { faL } from '@fortawesome/free-solid-svg-icons'
+import useZIndex from '../../hooks/useZIndex'
 
 let seed = 0
 const instances: MessageContext[] = shallowReactive([])
+const { nextZIndex } = useZIndex()
 export const createMessage = (props: CreateMessageProps) => {
   // 为什么以下写法在重复调用 createMessage 时，只会创建最后一个？
   // const vnode = h(Message, props)
@@ -21,7 +22,7 @@ export const createMessage = (props: CreateMessageProps) => {
     // https://github.com/vuejs/core/blob/d276a4f3e914aaccc291f7b2513e5d978919d0f9/packages/runtime-core/src/renderer.ts#L2356
     render(null, container)
   }
-  const newProps = { ...props, onDestroy, id }
+  const newProps = { ...props, onDestroy, id, zIndex: nextZIndex() }
 
   const container = document.createElement('div')
   const vnode = h(Message, newProps)

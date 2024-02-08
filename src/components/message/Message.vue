@@ -48,7 +48,8 @@ const topOffset = computed(() => getLastBottomOffset(props.id) + props.offset)
 // 预留给下一个窗体的偏移量
 const bottomOffset = computed(() => topOffset.value + height.value)
 const cssStyle = computed(() => ({
-  top: topOffset.value + 'px'
+  top: topOffset.value + 'px',
+  zIndex: props.zIndex
 }))
 
 const visible = ref(false)
