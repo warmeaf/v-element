@@ -8,6 +8,8 @@
     }"
     ref="messageRef"
     :style="cssStyle"
+    @mouseenter="clearTimer"
+    @mouseleave="startTimer"
   >
     <div class="v-message__content">
       <slot>
@@ -54,11 +56,15 @@ const cssStyle = computed(() => ({
 }))
 
 const visible = ref(false)
+let timer: any
 const startTimer = () => {
   if (props.duration === 0) return
-  setTimeout(() => {
+  timer = setTimeout(() => {
     visible.value = false
   }, props.duration)
+}
+const clearTimer = () => {
+  timer && clearTimeout(timer)
 }
 
 onMounted(async () => {
