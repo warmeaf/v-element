@@ -43,7 +43,7 @@ onMounted(() => {
     duration: 0,
     showClose: true
   })
-  createMessage({
+  const instance = createMessage({
     message: 'hello',
     duration: 0,
     showClose: true
@@ -56,13 +56,16 @@ onMounted(() => {
   //   message: 'hello hello hello',
   //   duration: 0
   // })
+
+  setTimeout(() => {
+    popperInstance?.setOptions({
+      placement: 'top'
+    })
+    trigger.value = 'click'
+
+    instance.destory()
+  }, 2000)
 })
-setTimeout(() => {
-  popperInstance?.setOptions({
-    placement: 'top'
-  })
-  trigger.value = 'click'
-}, 2000)
 </script>
 
 <template>

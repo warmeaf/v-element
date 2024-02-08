@@ -1,6 +1,7 @@
 import type { CreateMessageProps, MessageContext } from './types'
 import { h, render, shallowReactive } from 'vue'
 import Message from './Message.vue'
+import { faL } from '@fortawesome/free-solid-svg-icons'
 
 let seed = 0
 const instances: MessageContext[] = shallowReactive([])
@@ -31,11 +32,19 @@ export const createMessage = (props: CreateMessageProps) => {
 
   document.body.appendChild(container.firstElementChild!)
 
+  // 手动销毁
+  const manualDestroy = () => {
+    const instance = instances.find((instance) => instance.id === id)
+    if (instance) {
+      instance.vm.exposed!.visible.value = false
+    }
+  }
   const instance = {
     id,
     vnode,
     props: newProps,
-    vm: vnode.component!
+    vm: vnode.component!,
+    destory: manualDestroy
   }
   instances.push(instance)
   return instance

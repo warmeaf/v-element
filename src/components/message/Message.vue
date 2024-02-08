@@ -11,7 +11,6 @@
   >
     <div class="v-message__content">
       <slot>
-        {{ offset }} - {{ topOffset }} - {{ bottomOffset }}
         <render-vnode :vnode="message" />
       </slot>
     </div>
@@ -76,6 +75,7 @@ watch(visible, (newVal) => {
 })
 
 defineExpose({
-  bottomOffset
+  bottomOffset,
+  visible
 })
 </script>
