@@ -1,29 +1,31 @@
 <template>
-  <div
-    v-show="visible"
-    class="v-message"
-    :class="{
-      [`v-message--${type}`]: type,
-      'is-closable': showClose
-    }"
-    ref="messageRef"
-    :style="cssStyle"
-    @mouseenter="clearTimer"
-    @mouseleave="startTimer"
-  >
-    <div class="v-message__content">
-      <slot>
-        <render-vnode :vnode="message" />
-      </slot>
+  <transition :name="transitionName" @enter="onEnter" @after-leave="onAfterLeave">
+    <div
+      v-show="visible"
+      class="v-message"
+      :class="{
+        [`v-message--${type}`]: type,
+        'is-closable': showClose
+      }"
+      ref="messageRef"
+      :style="cssStyle"
+      @mouseenter="clearTimer"
+      @mouseleave="startTimer"
+    >
+      <div class="v-message__content">
+        <slot>
+          <render-vnode :vnode="message" />
+        </slot>
+      </div>
+      <div v-if="showClose" class="v-message__close">
+        <v-icon @click.stop="handleClose" icon="xmark" />
+      </div>
     </div>
-    <div v-if="showClose" class="v-message__close">
-      <v-icon @click.stop="handleClose" icon="xmark" />
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, nextTick, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import type { MessageProps } from './types'
 import RenderVnode from '../common/RenderVnode'
 import VIcon from '../icon/Icon.vue'
@@ -39,7 +41,8 @@ const props = withDefaults(defineProps<MessageProps>(), {
   message: '',
   duration: 3000,
   showClose: false,
-  offset: 20
+  offset: 20,
+  transitionName: 'fade-up'
 })
 
 const messageRef = ref<HTMLDivElement | null>()
@@ -69,9 +72,9 @@ const clearTimer = () => {
 
 onMounted(async () => {
   visible.value = true
-  await nextTick()
-  height.value = messageRef.value!.getBoundingClientRect().height
-  startTimer()
+  // await nextTick()
+  // height.value = messageRef.value!.getBoundingClientRect().height
+  // startTimer()
 })
 
 const handleClose = () => {
@@ -85,9 +88,17 @@ const keydown = (e: Event) => {
   }
 }
 useEventListener(document, 'keydown', keydown)
-watch(visible, (newVal) => {
-  !newVal && props.onDestroy()
-})
+// watch(visible, (newVal) => {
+//   !newVal && props.onDestroy()
+// })
+
+const onEnter = () => {
+  height.value = messageRef.value!.getBoundingClientRect().height
+  startTimer()
+}
+const onAfterLeave = () => {
+  props.onDestroy()
+}
 
 defineExpose({
   bottomOffset,

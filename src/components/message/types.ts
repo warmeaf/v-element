@@ -9,6 +9,7 @@ export interface MessageProps {
   offset?: number // 消息的偏移量
   id: string
   zIndex: number
+  transitionName?: string
 }
 
 export interface MessageContext {
