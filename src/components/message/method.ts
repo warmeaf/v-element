@@ -7,6 +7,7 @@ let seed = 0
 const instances: MessageContext[] = shallowReactive([])
 const { nextZIndex } = useZIndex()
 export const createMessage = (props: CreateMessageProps) => {
+  let timer: any
   // 为什么以下写法在重复调用 createMessage 时，只会创建最后一个？
   // const vnode = h(Message, props)
   // render(vnode, document.body)
@@ -20,7 +21,11 @@ export const createMessage = (props: CreateMessageProps) => {
 
     // 这段代码是如何发挥作用的呢？看源码 render 函数的实现
     // https://github.com/vuejs/core/blob/d276a4f3e914aaccc291f7b2513e5d978919d0f9/packages/runtime-core/src/renderer.ts#L2356
-    render(null, container)
+    timer = setTimeout(() => {
+      render(null, container)
+      clearTimeout(timer)
+      timer = null
+    }, 300)
   }
   const newProps = { ...props, onDestroy, id, zIndex: nextZIndex() }
 

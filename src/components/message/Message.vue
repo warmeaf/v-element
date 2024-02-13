@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import type { MessageProps } from './types'
 import RenderVnode from '../common/RenderVnode'
 import VIcon from '../icon/Icon.vue'
@@ -88,16 +88,16 @@ const keydown = (e: Event) => {
   }
 }
 useEventListener(document, 'keydown', keydown)
-// watch(visible, (newVal) => {
-//   !newVal && props.onDestroy()
-// })
+watch(visible, (newVal) => {
+  !newVal && props.onDestroy()
+})
 
 const onEnter = () => {
   height.value = messageRef.value!.getBoundingClientRect().height
   startTimer()
 }
 const onAfterLeave = () => {
-  props.onDestroy()
+  // props.onDestroy()
 }
 
 defineExpose({
