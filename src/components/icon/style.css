@@ -4,8 +4,8 @@
   color: inherit;
 }
 
-@each $val in primary, info, success, warning, danger  {
-    .v-icon--$(val) {
-      color: var(--v-color-$(val));
-    }
+@each $val in primary, info, success, warning, danger {
+  .v-icon--$(val) {
+    color: var(--v-color-$(val));
+  }
 }

@@ -41,7 +41,7 @@
   & + & {
     margin-left: 12px;
   }
-  [class*=v-icon] + span {
+  [class*='v-icon'] + span {
     margin-left: 6px;
   }
   &:hover,

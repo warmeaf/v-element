@@ -3,14 +3,15 @@
   --v-color-white: #ffffff;
   --v-color-black: #000000;
 
-  @each $var, $color in (primary, success, warning, danger, info), (#409eff, #67c23a, #e6a23c, #f56c6c, #909399) {
+  @each $var, $color in (primary, success, warning, danger, info),
+    (#409eff, #67c23a, #e6a23c, #f56c6c, #909399) {
     --v-color-$(var): $(color);
 
     @for $i from 3 to 9 by 2 {
-      --v-color-$(var)-light-$(i): mix(#fff, $(color), .$(i))
+      --v-color-$(var)-light-$(i): mix(#fff, $(color), .$(i));
     }
-    --v-color-$(var)-light-8: mix(#fff, $(color), .8);
-    --v-color-$(var)-dark-2: mix(#000, $(color), .2);
+    --v-color-$(var)-light-8: mix(#fff, $(color), 0.8);
+    --v-color-$(var)-dark-2: mix(#000, $(color), 0.2);
   }
 
   --v-bg-color: #ffffff;
@@ -52,8 +53,8 @@
   --v-font-size-base: 14px;
   --v-font-size-small: 13px;
   --v-font-size-extra-small: 12px;
-  --v-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1', Arial, sans-serif;
+  --v-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    '\5fae\8f6f\96c5\9ed1', Arial, sans-serif;
   --v-font-weight-primary: 500;
 
   /*disabled*/
@@ -61,5 +62,5 @@
   --v-disabled-text-color: var(--v-text-color-placeholder);
   --v-disabled-border-color: var(--v-border-color-light);
 
-  --v-transition-duration: .3s;
+  --v-transition-duration: 0.3s;
 }
