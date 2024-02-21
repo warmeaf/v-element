@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, h } from 'vue'
 import VButton from '@/components/button/Button.vue'
 import VCollapse from '@/components/collapse/Collapse.vue'
 import VCollapseItem from '@/components/collapse/CollapseItem.vue'
@@ -39,7 +39,7 @@ onMounted(() => {
   }
 
   createMessage({
-    message: 'hello hello hello',
+    message: h('span', null, 'hello hello hello'),
     duration: 0,
     showClose: true
   })
