@@ -63,7 +63,7 @@ export const getLastMessage = () => {
 
 export const getLastBottomOffset = (id: string) => {
   const idx = instances.findIndex((instance) => instance.id === id)
-  console.log(id, idx)
+  console.log(id, idx, instances.length)
   if (idx <= 0) {
     return 0
   } else {

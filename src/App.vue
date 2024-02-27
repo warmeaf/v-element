@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, h } from 'vue'
+import { ref, onMounted, h, computed } from 'vue'
 import VButton from '@/components/button/Button.vue'
 import VCollapse from '@/components/collapse/Collapse.vue'
 import VCollapseItem from '@/components/collapse/CollapseItem.vue'
@@ -64,9 +64,28 @@ onMounted(() => {
     })
     trigger.value = 'click'
 
-    instance.destory()
+    // instance.destory()
   }, 2000)
 })
+
+// 响应式数据结合计算属性代码示例
+const testData = ref(0)
+const testFn = () => {
+  console.log('run test')
+  const value = testData.value
+  return value
+}
+const test = computed(() => testFn())
+console.log(test.value, 'test')
+setTimeout(() => {
+  testData.value = 10
+  console.log(test.value, 'test')
+}, 3000)
+// 依次打印如下内容：
+// run test
+// 0 'test'
+// run test
+// 10 'test'
 </script>
 
 <template>
