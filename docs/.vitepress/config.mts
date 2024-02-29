@@ -1,13 +1,19 @@
 import { defineConfig } from 'vitepress'
+import { fileURLToPath, URL } from 'node:url'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'My Awesome Project',
+  title: 'VElement UI 组件库',
   description: 'A VitePress Site',
   vite: {
-    plugins: [vueJsx()]
+    plugins: [vueJsx()],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('../../src', import.meta.url))
+      }
+    }
   },
   markdown: {
     config(md) {
@@ -18,20 +24,13 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: '开始使用', link: '/' },
+      { text: '组件', link: '/components/button' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      },
-      {
-        text: 'Basic',
+        text: '基础组件',
         items: [{ text: 'Button', link: '/components/button' }]
       }
     ],
