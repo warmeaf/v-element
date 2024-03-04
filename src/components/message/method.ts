@@ -1,3 +1,11 @@
+/*
+ * @Author: warmleaf 1391040917@qq.com
+ * @Date: 2024-02-22 23:03:31
+ * @LastEditors: warmleaf 1391040917@qq.com
+ * @LastEditTime: 2024-03-04 21:49:01
+ * @FilePath: \v-element\src\components\message\method.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import type { CreateMessageProps, MessageContext } from './types'
 import { h, render, shallowReactive } from 'vue'
 import Message from './Message.vue'
@@ -70,4 +78,10 @@ export const getLastBottomOffset = (id: string) => {
     const pre = idx - 1
     return instances[pre].vm.exposed!.bottomOffset.value
   }
+}
+
+export const closeAll = () => {
+  instances.forEach((instance) => {
+    instance.destory()
+  })
 }
