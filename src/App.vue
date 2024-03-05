@@ -25,19 +25,8 @@ const handleCollapseChange = (value: (string | number)[]) => {
 
 const icon = ref('fa-spinner')
 
-import { createPopper } from '@popperjs/core'
-import type { Instance } from '@popperjs/core'
-const triggerNode = ref<InstanceType<typeof VButton> | null>()
-const overlayNode = ref<HTMLElement>()
-let popperInstance: Instance | null = null
 const trigger = ref<'hover' | 'click'>('hover')
 onMounted(() => {
-  if (triggerNode.value?.ref && overlayNode.value) {
-    popperInstance = createPopper(triggerNode.value.ref, overlayNode.value, {
-      placement: 'right'
-    })
-  }
-
   createMessage({
     message: h('span', null, 'hello hello hello'),
     duration: 0,
@@ -59,12 +48,9 @@ onMounted(() => {
   })
 
   setTimeout(() => {
-    popperInstance?.setOptions({
-      placement: 'top'
-    })
     trigger.value = 'click'
 
-    // instance.destory()
+    instance.destory()
   }, 2000)
 })
 
@@ -86,13 +72,21 @@ setTimeout(() => {
 // 0 'test'
 // run test
 // 10 'test'
+
+const tooltipRef = ref<InstanceType<typeof VTooltip> | null>(null)
+const openTooltip = () => {
+  tooltipRef.value?.open()
+}
+const closeTooltip = () => {
+  tooltipRef.value?.close()
+}
 </script>
 
 <template>
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">按钮组件</div>
   <p>
-    <v-button size="large" icon="volume-high">test button </v-button>
-    <v-button type="primary">test button </v-button>
+    <v-button size="large" icon="volume-high" @click="openTooltip">test button </v-button>
+    <v-button type="primary" @click="closeTooltip">test button </v-button>
     <v-button type="info">test button </v-button>
     <v-button type="warning" loading>test button </v-button>
     <v-button type="danger">test button </v-button>
@@ -128,8 +122,9 @@ setTimeout(() => {
 
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">提示组件</div>
   <div class="p-4">
-    <v-button ref="triggerNode" type="primary">test button</v-button>
-    <div ref="overlayNode">hello</div>
+    <v-tooltip ref="tooltipRef" content="hello" manual>
+      <v-button type="primary">test button</v-button>
+    </v-tooltip>
     <v-tooltip content="hello" :trigger="trigger" placement="right">
       <v-button type="primary">button</v-button>
     </v-tooltip>

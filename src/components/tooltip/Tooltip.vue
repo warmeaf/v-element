@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { ref, watch, reactive, onUnmounted } from 'vue'
-import type { TooltipProps, TooltipEmits } from './types'
+import type { TooltipProps, TooltipEmits, TooltipInstance } from './types'
 import { createPopper } from '@popperjs/core'
 import type { Instance } from '@popperjs/core'
 import useClickOutside from '../../hooks/useClickOutside'
@@ -26,7 +26,8 @@ defineOptions({
 
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'top',
-  trigger: 'hover'
+  trigger: 'hover',
+  manual: false
 })
 
 const emits = defineEmits<TooltipEmits>()
@@ -59,11 +60,13 @@ const attachEvents = () => {
     events['click'] = togglePopper
   }
 }
-attachEvents()
+if (!props.manual) {
+  attachEvents()
+}
 
 // 实现外侧点击
 useClickOutside(popperWrapperNode, () => {
-  if (props.trigger === 'click' && isOpen.value) {
+  if (props.trigger === 'click' && isOpen.value && !props.manual) {
     close()
   }
 })
@@ -102,5 +105,10 @@ watch(
 
 onUnmounted(() => {
   popperInstance?.destroy()
+})
+
+defineExpose<TooltipInstance>({
+  open,
+  close
 })
 </script>
