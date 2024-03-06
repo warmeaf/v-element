@@ -72,6 +72,23 @@ useClickOutside(popperWrapperNode, () => {
   }
 })
 
+watch(
+  () => props.manual,
+  (newValue) => {
+    if (newValue) {
+      delete events['click']
+      delete events['mouseenter']
+      delete outerEvents['mouseleave']
+    } else {
+      // 卸载旧的事件
+      delete events['click']
+      delete events['mouseenter']
+      delete outerEvents['mouseleave']
+      attachEvents()
+    }
+  }
+)
+
 // 根据 trigger 的值动态绑定事件
 watch(
   () => props.trigger,
