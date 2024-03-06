@@ -12,7 +12,7 @@ dependencies:
     version: registry.npmmirror.com/@fortawesome/vue-fontawesome@3.0.5(@fortawesome/fontawesome-svg-core@6.5.1)(vue@3.3.4)
   '@popperjs/core':
     specifier: ^2.11.8
-    version: registry.npmmirror.com/@popperjs/core@2.11.8
+    version: 2.11.8
   '@types/lodash-es':
     specifier: ^4.17.12
     version: registry.npmmirror.com/@types/lodash-es@4.17.12
@@ -750,6 +750,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@popperjs/core@2.11.8:
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    dev: false
 
   /@rollup/rollup-android-arm-eabi@4.7.0:
     resolution: {integrity: sha512-rGku10pL1StFlFvXX5pEv88KdGW6DHUghsxyP/aRYb9eH+74jTGJ3U0S/rtlsQ4yYq1Hcc7AMkoJOb1xu29Fxw==}
@@ -2367,12 +2371,6 @@ packages:
       picocolors: registry.npmmirror.com/picocolors@1.0.0
       tslib: registry.npmmirror.com/tslib@2.6.1
     dev: true
-
-  registry.npmmirror.com/@popperjs/core@2.11.8:
-    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/@popperjs/core/-/core-2.11.8.tgz}
-    name: '@popperjs/core'
-    version: 2.11.8
-    dev: false
 
   registry.npmmirror.com/@rollup/pluginutils@4.2.1:
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/@rollup/pluginutils/-/pluginutils-4.2.1.tgz}

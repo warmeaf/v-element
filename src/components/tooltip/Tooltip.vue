@@ -3,7 +3,7 @@
     <div ref="triggerNode" class="v-tooltip__trigger" v-on="events">
       <slot></slot>
     </div>
-    <Transition name="fade">
+    <Transition :name="transition">
       <div v-if="isOpen" ref="popperNode" class="v-tooltip__popper">
         <slot name="content">
           {{ content }}
@@ -27,7 +27,8 @@ defineOptions({
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'top',
   trigger: 'hover',
-  manual: false
+  manual: false,
+  transition: 'fade'
 })
 
 const emits = defineEmits<TooltipEmits>()
