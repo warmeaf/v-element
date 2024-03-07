@@ -7,6 +7,8 @@ export interface TooltipProps {
   manual?: boolean
   transition?: string
   options?: Options
+  openDelay?: number
+  closeDelay?: number
 }
 
 export interface TooltipEmits {

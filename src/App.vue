@@ -125,7 +125,7 @@ const closeTooltip = () => {
     <v-tooltip ref="tooltipRef" content="hello" manual>
       <v-button type="primary">test button</v-button>
     </v-tooltip>
-    <v-tooltip content="hello" :trigger="trigger" placement="right">
+    <v-tooltip content="hello" placement="right" :open-delay="1000" :close-delay="1000">
       <v-button type="primary">button</v-button>
     </v-tooltip>
   </div>

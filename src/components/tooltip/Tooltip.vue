@@ -19,6 +19,7 @@ import type { TooltipProps, TooltipEmits, TooltipInstance } from './types'
 import { createPopper } from '@popperjs/core'
 import type { Instance } from '@popperjs/core'
 import useClickOutside from '../../hooks/useClickOutside'
+import { debounce } from 'lodash-es'
 
 defineOptions({
   name: 'VTooltip'
@@ -28,7 +29,9 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'top',
   trigger: 'hover',
   manual: false,
-  transition: 'fade'
+  transition: 'fade',
+  openDelay: 0,
+  closeDelay: 0
 })
 
 const emits = defineEmits<TooltipEmits>()
@@ -38,10 +41,6 @@ const triggerNode = ref<HTMLElement | null>(null)
 const popperNode = ref<HTMLElement | null>(null)
 const popperWrapperNode = ref<HTMLElement | null>(null)
 let popperInstance: Instance | null = null
-const togglePopper = () => {
-  isOpen.value = !isOpen.value
-  emits('visible-change', isOpen.value)
-}
 
 const open = () => {
   isOpen.value = true
@@ -51,12 +50,32 @@ const close = () => {
   isOpen.value = false
   emits('visible-change', false)
 }
+const openDebounce = debounce(open, props.openDelay)
+const closeDebounce = debounce(close, props.closeDelay)
+
+const openFinal = () => {
+  closeDebounce.cancel()
+  openDebounce()
+}
+const closeFinal = () => {
+  openDebounce.cancel()
+  closeDebounce()
+}
+
+const togglePopper = () => {
+  if (isOpen.value) {
+    closeFinal()
+  } else {
+    openFinal()
+  }
+}
+
 const events: Record<string, Function> = reactive({})
 const outerEvents: Record<string, Function> = reactive({})
 const attachEvents = () => {
   if (props.trigger === 'hover') {
-    events['mouseenter'] = open
-    outerEvents['mouseleave'] = close
+    events['mouseenter'] = openFinal
+    outerEvents['mouseleave'] = closeFinal
   } else if (props.trigger === 'click') {
     events['click'] = togglePopper
   }
@@ -68,7 +87,7 @@ if (!props.manual) {
 // 实现外侧点击
 useClickOutside(popperWrapperNode, () => {
   if (props.trigger === 'click' && isOpen.value && !props.manual) {
-    close()
+    closeFinal()
   }
 })
 
@@ -126,7 +145,7 @@ onUnmounted(() => {
 })
 
 defineExpose<TooltipInstance>({
-  open,
-  close
+  open: openFinal,
+  close: closeFinal
 })
 </script>
