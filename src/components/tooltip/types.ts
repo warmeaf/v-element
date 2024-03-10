@@ -9,6 +9,7 @@ export interface TooltipProps {
   options?: Options
   openDelay?: number
   closeDelay?: number
+  offset?: number
 }
 
 export interface TooltipEmits {

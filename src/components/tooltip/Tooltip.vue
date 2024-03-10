@@ -8,6 +8,7 @@
         <slot name="content">
           {{ content }}
         </slot>
+        <div id="arrow" data-popper-arrow></div>
       </div>
     </Transition>
   </div>
@@ -31,7 +32,8 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   manual: false,
   transition: 'fade',
   openDelay: 0,
-  closeDelay: 0
+  closeDelay: 0,
+  offset: 8
 })
 
 const emits = defineEmits<TooltipEmits>()
@@ -128,7 +130,15 @@ watch(
     if (newValue) {
       if (triggerNode.value && popperNode.value) {
         popperInstance = createPopper(triggerNode.value, popperNode.value, {
-          placement: props.placement
+          placement: props.placement,
+          modifiers: [
+            {
+              name: 'offset',
+              options: {
+                offset: [0, props.offset]
+              }
+            }
+          ]
         })
       }
     } else {
