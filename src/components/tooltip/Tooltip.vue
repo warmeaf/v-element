@@ -126,7 +126,7 @@ watch(
 
 watch(
   isOpen,
-  async (newValue) => {
+  (newValue) => {
     if (newValue) {
       if (triggerNode.value && popperNode.value) {
         popperInstance = createPopper(triggerNode.value, popperNode.value, {
