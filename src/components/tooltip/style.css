@@ -21,6 +21,8 @@
     word-break: break-all;
     box-sizing: border-box;
     z-index: 1000;
+    /* 为什么需要伪元素before？ */
+    /* 因为popperjs自动给#arrow元素设置了transform */
     #arrow,
     #arrow::before {
       position: absolute;
