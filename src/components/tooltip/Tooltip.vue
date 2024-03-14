@@ -142,7 +142,7 @@ watch(
         })
       }
     } else {
-      // popperInstance?.destroy()
+      popperInstance?.destroy()
       popperInstance = null
     }
   },
