@@ -19,7 +19,7 @@ describe('Tooltip.vue', () => {
 
     const wrapper = mount({
       components: {
-        [VTooltip.name]: VTooltip
+        VTooltip
       },
       template
     })
@@ -43,7 +43,7 @@ describe('Tooltip.vue', () => {
 
     const wrapper = mount({
       components: {
-        [VTooltip.name]: VTooltip
+        VTooltip
       },
       template
     })
@@ -72,7 +72,7 @@ describe('Tooltip.vue', () => {
 
     const wrapper = mount({
       components: {
-        [VTooltip.name]: VTooltip
+        VTooltip
       },
       template
     })
@@ -110,7 +110,7 @@ describe('Tooltip.vue', () => {
 
     const wrapper = mount({
       components: {
-        [VTooltip.name]: VTooltip
+        VTooltip
       },
       template,
       setup() {
@@ -154,7 +154,7 @@ describe('Tooltip.vue', () => {
 
     const wrapper = mount({
       components: {
-        [VTooltip.name]: VTooltip
+        VTooltip
       },
       template,
       setup() {
