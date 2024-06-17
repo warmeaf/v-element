@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   manual: false,
   transition: 'fade',
   openDelay: 0,
-  closeDelay: 0,
+  closeDelay: 200,
   offset: 8
 })
 
@@ -72,11 +72,16 @@ const togglePopper = () => {
   }
 }
 
-const events: Record<string, Function> = reactive({})
-const outerEvents: Record<string, Function> = reactive({})
+const events = reactive<{
+  click?: () => void
+}>({})
+const outerEvents = reactive<{
+  mouseenter?: () => void
+  mouseleave?: () => void
+}>({})
 const attachEvents = () => {
   if (props.trigger === 'hover') {
-    events['mouseenter'] = openFinal
+    outerEvents['mouseenter'] = openFinal
     outerEvents['mouseleave'] = closeFinal
   } else if (props.trigger === 'click') {
     events['click'] = togglePopper
@@ -98,12 +103,12 @@ watch(
   (newValue) => {
     if (newValue) {
       delete events['click']
-      delete events['mouseenter']
+      delete outerEvents['mouseenter']
       delete outerEvents['mouseleave']
     } else {
       // 卸载旧的事件
       delete events['click']
-      delete events['mouseenter']
+      delete outerEvents['mouseenter']
       delete outerEvents['mouseleave']
       attachEvents()
     }
@@ -117,7 +122,7 @@ watch(
     if (newValue !== oldValue) {
       // 卸载旧的事件
       delete events['click']
-      delete events['mouseenter']
+      delete outerEvents['mouseenter']
       delete outerEvents['mouseleave']
       attachEvents()
     }
@@ -142,7 +147,6 @@ watch(
         })
       }
     } else {
-      // popperInstance?.destroy()
       popperInstance = null
     }
   },
@@ -155,6 +159,7 @@ onUnmounted(() => {
   popperInstance?.destroy()
 })
 
+// 对外暴露
 defineExpose<TooltipInstance>({
   open: openFinal,
   close: closeFinal
