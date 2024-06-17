@@ -5,6 +5,8 @@ import VCollapse from '@/components/collapse/Collapse.vue'
 import VCollapseItem from '@/components/collapse/CollapseItem.vue'
 import VIcon from '@/components/icon/Icon.vue'
 import VTooltip from '@/components/tooltip/Tooltip.vue'
+import VDropdown from '@/components/dropdown/Dropdown.vue'
+import type { MenuOption } from '@/components/dropdown/types'
 // import VMessage from '@/components/message/Message.vue'
 import { createMessage } from '@/components/message/method'
 
@@ -80,6 +82,23 @@ const openTooltip = () => {
 const closeTooltip = () => {
   tooltipRef.value?.close()
 }
+
+const menuOptions = ref<MenuOption[]>([
+  {
+    label: '选项1',
+    key: '1'
+  },
+  {
+    label: '选项2',
+    key: '2',
+    disabled: true
+  },
+  {
+    label: h('span', null, 'hello hello hello'),
+    key: '3',
+    divided: true
+  }
+])
 </script>
 
 <template>
@@ -128,6 +147,13 @@ const closeTooltip = () => {
     <v-tooltip content="hello" placement="right" :open-delay="1000" :close-delay="1000">
       <v-button type="primary">button</v-button>
     </v-tooltip>
+  </div>
+
+  <div class="mt-4 text-3xl font-bold underline bg-amber-500">Dropdown 组件</div>
+  <div class="p-4">
+    <v-dropdown ref="dropdownRef" :menu-options="menuOptions">
+      <v-button type="primary">test button</v-button>
+    </v-dropdown>
   </div>
 
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">message组件</div>
