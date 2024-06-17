@@ -38,13 +38,15 @@
 import { ref } from 'vue'
 import type { DropdownProps, DropdownEmits, MenuOption, DropdownInstance } from './types'
 import VTooltip from '@/components/tooltip/Tooltip.vue'
-import RenderVnode from '../common/RenderVnode'
+import RenderVnode from '@/components/common/RenderVnode'
 
 // 定义选项、属性、事件
 defineOptions({
   name: 'VDropdown'
 })
-defineProps<DropdownProps>()
+const props = withDefaults(defineProps<DropdownProps>(), {
+  hideAfterClick: true
+})
 const emits = defineEmits<DropdownEmits>()
 
 // 事件
@@ -52,7 +54,11 @@ const visibleChange = (visible: boolean) => {
   emits('visible-change', visible)
 }
 const select = (value: MenuOption) => {
+  if (value.disabled) return
   emits('select', value)
+  if (props.hideAfterClick) {
+    tooltipRef.value?.close()
+  }
 }
 
 // 对外暴露
