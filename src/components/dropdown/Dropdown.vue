@@ -57,14 +57,14 @@ const select = (value: MenuOption) => {
   if (value.disabled) return
   emits('select', value)
   if (props.hideAfterClick) {
-    tooltipRef.value?.close()
+    tooltipRef.value && tooltipRef.value.close()
   }
 }
 
 // 对外暴露
 const tooltipRef = ref<InstanceType<typeof VTooltip> | null>(null)
 defineExpose<DropdownInstance>({
-  show: () => tooltipRef.value?.open(),
-  hide: () => tooltipRef.value?.close()
+  show: () => tooltipRef.value && tooltipRef.value.open(),
+  hide: () => tooltipRef.value && tooltipRef.value.close()
 })
 </script>

@@ -56,13 +56,13 @@ export default defineComponent({
       if (value.disabled) return
       emit('select', value)
       if (props.hideAfterClick) {
-        tooltipRef.value?.close()
+        tooltipRef.value && tooltipRef.value.close()
       }
     }
 
     expose({
-      show: () => tooltipRef.value?.open(),
-      hide: () => tooltipRef.value?.close()
+      show: () => tooltipRef.value && tooltipRef.value.open(),
+      hide: () => tooltipRef.value && tooltipRef.value.close()
     })
 
     return () => {
