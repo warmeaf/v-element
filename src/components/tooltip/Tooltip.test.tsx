@@ -11,17 +11,13 @@ describe('Tooltip.vue', () => {
   })
 
   test('基本测试', () => {
-    const template = `
-    <v-tooltip content="hello">
-      <button>test button</button>
-    </v-tooltip>
-    `
-
-    const wrapper = mount({
-      components: {
-        VTooltip
+    const wrapper = mount(VTooltip, {
+      props: {
+        content: 'hello'
       },
-      template
+      slots: {
+        default: () => <button>test button</button>
+      }
     })
 
     const triggerArea = wrapper.find('.v-tooltip__trigger')
@@ -64,26 +60,27 @@ describe('Tooltip.vue', () => {
   })
 
   test('移入移出触发层', async () => {
-    const template = `
-    <v-tooltip content="hello">
-      <button>test button</button>
-    </v-tooltip>
-    `
-
-    const wrapper = mount({
-      components: {
-        VTooltip
+    const wrapper = mount(VTooltip, {
+      props: {
+        content: 'hello'
       },
-      template
+      slots: {
+        default: () => <button>test button</button>
+      }
     })
 
-    // 移入触发层
-    wrapper.get('.v-tooltip__trigger').trigger('mouseenter')
+    // 移入整体
+    wrapper.get('.v-tooltip').trigger('mouseenter')
     await vi.runAllTimers()
     // 展示层存在
     expect(wrapper.find('.v-tooltip__popper').exists()).toBe(true)
     expect(wrapper.find('.v-tooltip__popper').text()).toBe('hello')
     // console.log(wrapper.html())
+
+    // 移出整体再移入展示层，展示层存在
+    wrapper.get('.v-tooltip').trigger('mouseleave')
+    wrapper.get('.v-tooltip__popper').trigger('mouseenter')
+    expect(wrapper.find('.v-tooltip__popper').exists()).toBe(true)
 
     // 移出触发层
     wrapper.get('.v-tooltip').trigger('mouseleave')
@@ -94,10 +91,10 @@ describe('Tooltip.vue', () => {
   test('手动触发', async () => {
     const tooltipRef = ref<InstanceType<typeof VTooltip> | null>(null)
     const openTooltip = () => {
-      tooltipRef.value?.open()
+      tooltipRef.value && tooltipRef.value.open()
     }
     const closeTooltip = () => {
-      tooltipRef.value?.close()
+      tooltipRef.value && tooltipRef.value.close()
     }
 
     const template = `
@@ -146,26 +143,18 @@ describe('Tooltip.vue', () => {
   test('visible-change事件', async () => {
     const change = vi.fn()
 
-    const template = `
-    <v-tooltip content="hello" @visible-change="change">
-      <button>test button</button>
-    </v-tooltip>
-    `
-
-    const wrapper = mount({
-      components: {
-        VTooltip
+    const wrapper = mount(VTooltip, {
+      props: {
+        content: 'hello',
+        'onVisible-change': change
       },
-      template,
-      setup() {
-        return {
-          change
-        }
+      slots: {
+        default: () => <button>test button</button>
       }
     })
 
     // 移入触发层
-    wrapper.get('.v-tooltip__trigger').trigger('mouseenter')
+    wrapper.get('.v-tooltip').trigger('mouseenter')
     await vi.runAllTimers()
     expect(change).toBeCalledWith(true)
 
