@@ -14,6 +14,8 @@ const install = (app: App) => {
   })
 }
 
+import './style/index.css'
+
 // 导出单独组件或方法
 export {
   VButton,
