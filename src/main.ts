@@ -8,4 +8,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas)
 
-createApp(App).mount('#app')
+import testPlugin from './test.plugin'
+
+const app = createApp(App)
+app.use(testPlugin)
+app.mount('#app')
