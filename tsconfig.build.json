@@ -1,5 +1,6 @@
 {
   "files": [],
+  "include": ["src/index.ts", "src/components/**/*", "src/hooks/**/*"],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
