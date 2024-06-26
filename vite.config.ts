@@ -27,6 +27,17 @@ export default defineConfig({
       name: 'VElement',
       // 文件名称
       fileName: 'v-element'
+    },
+    rollupOptions: {
+      external: ['vue'],
+      output: {
+        // 指定输出的模块使用命名导出
+        exports: 'named',
+        // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
+        globals: {
+          vue: 'Vue'
+        }
+      }
     }
   }
 })

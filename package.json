@@ -2,6 +2,18 @@
   "name": "v-element",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/v-element.umd.cjs",
+  "module": "./dist/v-element.js",
+  "exports": {
+    ".": {
+      "import": "./dist/v-element.js",
+      "require": "./dist/v-element.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
