@@ -39,7 +39,7 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "prepare": "husky install",
-    "commitlint": "commitlint --config commitlint.config.cjs -e -V",
+    "commitlint": "commitlint --config commitlint.config.js -e -V",
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
