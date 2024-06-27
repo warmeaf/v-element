@@ -28,8 +28,6 @@ export default defineConfig({
     lib: {
       // 配置打包入口
       entry: resolve(__dirname, 'src/index.ts'),
-      // 全局变量名称
-      name: 'VElement',
       // 文件名称
       fileName: 'v-element',
       formats: ['es']
@@ -42,7 +40,6 @@ export default defineConfig({
         '@fortawesome/vue-fontawesome',
         '@popperjs/core',
         '@types/lodash-es',
-        'axios',
         'lodash-es'
       ],
       output: {
