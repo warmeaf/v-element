@@ -25,7 +25,7 @@
   "style": "./dist/index.css",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check build-es build-umd && npm run move-style",
+    "build": "run-p type-check build-es build-umd && pnpm move-style",
     "preview": "vite preview",
     "build-umd": "vite build --config vite.config.umd.ts",
     "build-es": "vite build --config vite.config.es.ts",
