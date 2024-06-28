@@ -2,10 +2,10 @@
   <i
     class="v-icon"
     :class="{
-      [`v-icon--${type}`]: type
+      [`v-icon--${type}`]: type,
     }"
     :style="{
-      color: color
+      color: color,
     }"
   >
     <font-awesome-icon v-bind="filteredProps" />
@@ -25,6 +25,6 @@ const filteredProps = computed(() => omit(props, ['type', 'color']))
 // console.log(filteredProps)
 
 defineOptions({
-  name: 'VIcon'
+  name: 'VIcon',
 })
 </script>

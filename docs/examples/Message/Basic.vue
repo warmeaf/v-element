@@ -11,7 +11,7 @@ const open2 = () => {
 </script>
 <template>
   <div class="block basic">
-    <v-button type="primary" @click="open"> 创建一条消息 </v-button>
-    <v-button @click="open2"> 创建支持 VNode 的消息 </v-button>
+    <v-button type="primary" @click="open">创建一条消息</v-button>
+    <v-button @click="open2">创建支持 VNode 的消息</v-button>
   </div>
 </template>

@@ -7,6 +7,6 @@ const open = () => {
 </script>
 <template>
   <div class="block basic">
-    <v-button @click="open"> 可关闭消息 </v-button>
+    <v-button @click="open">可关闭消息</v-button>
   </div>
 </template>

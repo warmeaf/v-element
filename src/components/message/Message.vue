@@ -1,11 +1,15 @@
 <template>
-  <transition :name="transitionName" @enter="onEnter" @after-leave="onAfterLeave">
+  <transition
+    :name="transitionName"
+    @enter="onEnter"
+    @after-leave="onAfterLeave"
+  >
     <div
       v-show="visible"
       class="v-message"
       :class="{
         [`v-message--${type}`]: type,
-        'is-closable': showClose
+        'is-closable': showClose,
       }"
       ref="messageRef"
       :style="cssStyle"
@@ -33,7 +37,7 @@ import { getLastBottomOffset } from './method'
 import useEventListener from '../..//hooks/useEventListener'
 
 defineOptions({
-  name: 'VMessage'
+  name: 'VMessage',
 })
 
 const props = withDefaults(defineProps<MessageProps>(), {
@@ -42,7 +46,7 @@ const props = withDefaults(defineProps<MessageProps>(), {
   duration: 3000,
   showClose: false,
   offset: 20,
-  transitionName: 'fade-up'
+  transitionName: 'fade-up',
 })
 
 const messageRef = ref<HTMLDivElement | null>()
@@ -55,11 +59,11 @@ const topOffset = computed(() => getLastBottomOffset(props.id) + props.offset)
 const bottomOffset = computed(() => topOffset.value + height.value)
 const cssStyle = computed(() => ({
   top: topOffset.value + 'px',
-  zIndex: props.zIndex
+  zIndex: props.zIndex,
 }))
 
 const visible = ref(false)
-let timer: any
+let timer: ReturnType<typeof setTimeout> | null = null
 const startTimer = () => {
   if (props.duration === 0) return
   timer = setTimeout(() => {
@@ -102,6 +106,6 @@ const onAfterLeave = () => {
 
 defineExpose({
   bottomOffset,
-  visible
+  visible,
 })
 </script>

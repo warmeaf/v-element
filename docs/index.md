@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "VElement UI 组件库"
-  text: "前端进阶"
-  tagline: "最新 Vue3.3 + TS4 高仿 ElementPlus 打造自己的组件库"
+  name: 'VElement UI 组件库'
+  text: '前端进阶'
+  tagline: '最新 Vue3.3 + TS4 高仿 ElementPlus 打造自己的组件库'
   actions:
     - theme: brand
       text: 开始使用
@@ -22,4 +22,3 @@ features:
   - title: “难”
     details: 循序渐进，难度逐渐上升，包括：Message - Select - Form 这种高难度高复杂组件。
 ---
-

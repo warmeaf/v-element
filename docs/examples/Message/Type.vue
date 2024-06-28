@@ -15,9 +15,9 @@ const open = (type) => {
 </script>
 <template>
   <div class="block basic">
-    <v-button @click="open('success')"> Success </v-button>
-    <v-button @click="open('info')"> Info </v-button>
-    <v-button @click="open('warning')"> warning </v-button>
-    <v-button @click="open('danger')"> Danger </v-button>
+    <v-button @click="open('success')">Success</v-button>
+    <v-button @click="open('info')">Info</v-button>
+    <v-button @click="open('warning')">warning</v-button>
+    <v-button @click="open('danger')">Danger</v-button>
   </div>
 </template>

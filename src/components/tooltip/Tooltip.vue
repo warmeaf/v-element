@@ -23,7 +23,7 @@ import useClickOutside from '../../hooks/useClickOutside'
 import { debounce } from 'lodash-es'
 
 defineOptions({
-  name: 'VTooltip'
+  name: 'VTooltip',
 })
 
 const props = withDefaults(defineProps<TooltipProps>(), {
@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   transition: 'fade',
   openDelay: 0,
   closeDelay: 200,
-  offset: 8
+  offset: 8,
 })
 
 const emits = defineEmits<TooltipEmits>()
@@ -112,7 +112,7 @@ watch(
       delete outerEvents['mouseleave']
       attachEvents()
     }
-  }
+  },
 )
 
 // 根据 trigger 的值动态绑定事件
@@ -126,7 +126,7 @@ watch(
       delete outerEvents['mouseleave']
       attachEvents()
     }
-  }
+  },
 )
 
 watch(
@@ -140,10 +140,10 @@ watch(
             {
               name: 'offset',
               options: {
-                offset: [0, props.offset]
-              }
-            }
-          ]
+                offset: [0, props.offset],
+              },
+            },
+          ],
         })
       }
     } else {
@@ -151,8 +151,8 @@ watch(
     }
   },
   {
-    flush: 'post'
-  }
+    flush: 'post',
+  },
 )
 
 onUnmounted(() => {
@@ -162,6 +162,6 @@ onUnmounted(() => {
 // 对外暴露
 defineExpose<TooltipInstance>({
   open: openFinal,
-  close: closeFinal
+  close: closeFinal,
 })
 </script>

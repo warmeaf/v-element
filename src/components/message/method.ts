@@ -15,7 +15,7 @@ let seed = 0
 const instances: MessageContext[] = shallowReactive([])
 const { nextZIndex } = useZIndex()
 export const createMessage = (props: CreateMessageProps) => {
-  let timer: any
+  let timer: NodeJS.Timeout
   // 为什么以下写法在重复调用 createMessage 时，只会创建最后一个？
   // const vnode = h(Message, props)
   // render(vnode, document.body)
@@ -32,7 +32,6 @@ export const createMessage = (props: CreateMessageProps) => {
     timer = setTimeout(() => {
       render(null, container)
       clearTimeout(timer)
-      timer = null
     }, 300)
   }
   const newProps = { ...props, onDestroy, id, zIndex: nextZIndex() }
@@ -58,7 +57,7 @@ export const createMessage = (props: CreateMessageProps) => {
     vnode,
     props: newProps,
     vm: vnode.component!,
-    destory: manualDestroy
+    destory: manualDestroy,
   }
   instances.push(instance)
   return instance

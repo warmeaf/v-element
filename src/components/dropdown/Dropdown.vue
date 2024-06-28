@@ -15,13 +15,17 @@
       <template #content>
         <ul class="v-dropdown__menu">
           <template v-for="item in menuOptions" :key="item.key">
-            <li v-if="item.divided" role="separator" class="divided-placeholder"></li>
+            <li
+              v-if="item.divided"
+              role="separator"
+              class="divided-placeholder"
+            ></li>
             <li
               class="v-dropdown__item"
               @click="select(item)"
               :class="{
                 'is-disabled': item.disabled,
-                'is-divided': item.disabled
+                'is-divided': item.disabled,
               }"
               :id="`dropdown-item-${item.key}`"
             >
@@ -36,16 +40,21 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { DropdownProps, DropdownEmits, MenuOption, DropdownInstance } from './types'
+import type {
+  DropdownProps,
+  DropdownEmits,
+  MenuOption,
+  DropdownInstance,
+} from './types'
 import VTooltip from '@/components/tooltip/Tooltip.vue'
 import RenderVnode from '@/components/common/RenderVnode'
 
 // 定义选项、属性、事件
 defineOptions({
-  name: 'VDropdown'
+  name: 'VDropdown',
 })
 const props = withDefaults(defineProps<DropdownProps>(), {
-  hideAfterClick: true
+  hideAfterClick: true,
 })
 const emits = defineEmits<DropdownEmits>()
 
@@ -65,6 +74,6 @@ const select = (value: MenuOption) => {
 const tooltipRef = ref<InstanceType<typeof VTooltip> | null>(null)
 defineExpose<DropdownInstance>({
   show: () => tooltipRef.value && tooltipRef.value.open(),
-  hide: () => tooltipRef.value && tooltipRef.value.close()
+  hide: () => tooltipRef.value && tooltipRef.value.close(),
 })
 </script>

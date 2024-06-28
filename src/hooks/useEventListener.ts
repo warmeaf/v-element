@@ -4,7 +4,7 @@ import type { Ref } from 'vue'
 export default function useEventListener(
   target: Ref<EventTarget | null> | EventTarget,
   event: string,
-  handler: (e: Event) => any
+  handler: (e: Event) => void
 ) {
   if (isRef(target)) {
     watch(target, (value, oldValue) => {

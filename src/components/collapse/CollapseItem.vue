@@ -4,7 +4,7 @@
       class="v-collapse-item__header"
       :class="{
         'is-disabled': disabled,
-        'is-active': isActive
+        'is-active': isActive,
       }"
       @click="handleItemClick"
     >
@@ -28,13 +28,15 @@ import type { CollapseItemProps } from './types'
 import VIcon from '@/components/icon/Icon.vue'
 
 defineOptions({
-  name: 'VCollapseItem'
+  name: 'VCollapseItem',
 })
 
 const props = defineProps<CollapseItemProps>()
 
 const collapseItemContext = inject(collapseItemContextKey)
-const isActive = computed(() => collapseItemContext?.activeNames.value.includes(props.name))
+const isActive = computed(() =>
+  collapseItemContext?.activeNames.value.includes(props.name),
+)
 const handleItemClick = () => {
   if (props.disabled) return
   collapseItemContext?.handleItemClick(props.name)
@@ -58,6 +60,6 @@ const transitionEvents: Record<string, (el: HTMLElement) => void> = {
   },
   'after-leave': (el) => {
     el.style.height = 'revert'
-  }
+  },
 }
 </script>

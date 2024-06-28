@@ -8,7 +8,7 @@
       'is-plain': plain,
       'is-round': round,
       'is-circle': circle,
-      'is-disabled': disabled || loading
+      'is-disabled': disabled || loading,
     }"
     :disabled="disabled"
     :type="nativeType"
@@ -25,7 +25,7 @@ import { ref } from 'vue'
 import VIcon from '../icon/Icon.vue'
 
 defineOptions({
-  name: 'VButton'
+  name: 'VButton',
 })
 
 // 定义属性类型方式一
@@ -38,8 +38,8 @@ defineOptions({
 import { props } from './props'
 defineProps(props)
 
-const _ref = ref<HTMLButtonElement>()
+const _ref = ref<HTMLButtonElement | null>(null)
 defineExpose({
-  ref: _ref
+  ref: _ref,
 })
 </script>
