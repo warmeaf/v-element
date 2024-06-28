@@ -11,7 +11,7 @@ import type { NameType, CollapseProps, CollapseEmits } from './types'
 import { collapseItemContextKey } from './types'
 
 defineOptions({
-  name: 'VCollapse',
+  name: 'VCollapse'
 })
 
 const props = defineProps<CollapseProps>()
@@ -54,6 +54,6 @@ const handleItemClick = (item: NameType): void => {
 }
 provide(collapseItemContextKey, {
   activeNames,
-  handleItemClick,
+  handleItemClick
 })
 </script>

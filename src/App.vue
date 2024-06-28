@@ -33,21 +33,21 @@ onMounted(() => {
   createMessage({
     message: h('span', null, 'hello hello hello'),
     duration: 0,
-    showClose: true,
+    showClose: true
   })
   const instance = createMessage({
     type: 'success',
     message: 'hello',
     duration: 0,
-    showClose: true,
+    showClose: true
   })
   createMessage({
     message: 'hello hello hello',
-    duration: 0,
+    duration: 0
   })
   createMessage({
     message: 'hello hello hello',
-    duration: 0,
+    duration: 0
   })
 
   setTimeout(() => {
@@ -87,18 +87,18 @@ const closeTooltip = () => {
 const menuOptions = ref<MenuOption[]>([
   {
     label: '选项1',
-    key: '1',
+    key: '1'
   },
   {
     label: '选项2',
     key: '2',
-    disabled: true,
+    disabled: true
   },
   {
     label: h('span', null, 'hello hello hello'),
     key: '3',
-    divided: true,
-  },
+    divided: true
+  }
 ])
 </script>
 

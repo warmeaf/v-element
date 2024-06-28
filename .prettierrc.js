@@ -10,10 +10,10 @@ export default {
   htmlWhitespaceSensitivity: 'ignore',
   // 自动检测并使用项目中已有的换行符风格
   endOfLine: 'auto',
-  // 在数组和对象字面量的尾部添加逗号
-  trailingComma: 'all',
+  // 不添加尾随逗号
+  trailingComma: 'none',
   // 缩进宽度为2个空格
   tabWidth: 2,
   //单行长度
-  printWidth: 80,
+  printWidth: 80
 }

@@ -18,5 +18,5 @@ export default tseslint.config({
       parser: tseslint.parser, // 在vue文件上使用ts解析器
       sourceType: 'module'
     }
-  },
+  }
 })
