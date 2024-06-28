@@ -87,7 +87,11 @@ export default defineComponent({
                   {props.menuOptions.map((item) => {
                     return (
                       <Fragment key={item.key}>
-                        {item.divided ? <li role="separator" class="divided-placeholder" /> : ''}
+                        {item.divided ? (
+                          <li role="separator" class="divided-placeholder" />
+                        ) : (
+                          ''
+                        )}
                         <li
                           class={{
                             'v-dropdown__item': true,

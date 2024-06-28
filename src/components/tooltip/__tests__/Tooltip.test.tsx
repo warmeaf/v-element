@@ -1,6 +1,6 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
-import VTooltip from './Tooltip.vue'
+import VTooltip from '../Tooltip.vue'
 import { ref } from 'vue'
 
 describe('Tooltip.vue', () => {

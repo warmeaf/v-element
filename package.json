@@ -33,7 +33,7 @@
     "test": "vitest",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint src --fix",
-    "format": "prettier --write \"./**/*.{html,vue,js,json,md}\"",
+    "format": "prettier --write \"./**/*.{html,vue,js,json,md,tsx}\"",
     "postinstall": "patch-package",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",

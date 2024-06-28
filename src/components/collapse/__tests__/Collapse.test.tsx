@@ -1,7 +1,7 @@
 import { describe, test, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import VCollapse from './Collapse.vue'
-import VCollapseItem from './CollapseItem.vue'
+import VCollapse from '../Collapse.vue'
+import VCollapseItem from '../CollapseItem.vue'
 import { ref } from 'vue'
 
 describe('Collapse.vue', () => {
@@ -15,8 +15,8 @@ describe('Collapse.vue', () => {
     const wrapper = mount(
       {
         components: {
-          [VCollapse.name]: VCollapse,
-          [VCollapseItem.name]: VCollapseItem
+          VCollapse,
+          VCollapseItem
         },
         data() {
           return {
@@ -56,8 +56,8 @@ describe('Collapse.vue', () => {
     const wrapper = mount(
       {
         components: {
-          [VCollapse.name]: VCollapse,
-          [VCollapseItem.name]: VCollapseItem
+          VCollapse,
+          VCollapseItem
         },
         template,
         setup() {
@@ -94,8 +94,8 @@ describe('Collapse.vue', () => {
     const wrapper = mount(
       {
         components: {
-          [VCollapse.name]: VCollapse,
-          [VCollapseItem.name]: VCollapseItem
+          VCollapse,
+          VCollapseItem
         },
         template,
         setup() {
@@ -130,8 +130,8 @@ describe('Collapse.vue', () => {
     const wrapper = mount(
       {
         components: {
-          [VCollapse.name]: VCollapse,
-          [VCollapseItem.name]: VCollapseItem
+          VCollapse,
+          VCollapseItem
         },
         template,
         setup() {
@@ -166,8 +166,8 @@ describe('Collapse.vue', () => {
     const wrapper = mount(
       {
         components: {
-          [VCollapse.name]: VCollapse,
-          [VCollapseItem.name]: VCollapseItem
+          VCollapse,
+          VCollapseItem
         },
         template,
         setup() {
