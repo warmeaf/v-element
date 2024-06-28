@@ -1,7 +1,7 @@
 import { defineComponent, ref, Fragment } from 'vue'
 import type { PropType } from 'vue'
 import type { Placement } from '@popperjs/core'
-import VTooltip from '@/components/tooltip/Tooltip.vue'
+import VTooltip from '@/components/tooltip/src/Tooltip.vue'
 import type { MenuOption } from './types'
 import RenderVnode from '@/components/common/RenderVnode'
 

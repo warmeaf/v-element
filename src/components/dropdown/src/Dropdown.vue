@@ -46,7 +46,7 @@ import type {
   MenuOption,
   DropdownInstance
 } from './types'
-import VTooltip from '@/components/tooltip/Tooltip.vue'
+import VTooltip from '@/components/tooltip/src/Tooltip.vue'
 import RenderVnode from '@/components/common/RenderVnode'
 
 // 定义选项、属性、事件

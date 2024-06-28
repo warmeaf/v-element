@@ -25,7 +25,7 @@
 import { inject, computed } from 'vue'
 import { collapseItemContextKey } from './types'
 import type { CollapseItemProps } from './types'
-import VIcon from '@/components/icon/Icon.vue'
+import VIcon from '@/components/icon/src/Icon.vue'
 
 defineOptions({
   name: 'VCollapseItem'

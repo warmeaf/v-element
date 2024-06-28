@@ -1,7 +1,7 @@
 import { describe, test, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import VCollapse from '../Collapse.vue'
-import VCollapseItem from '../CollapseItem.vue'
+import VCollapse from '../src/Collapse.vue'
+import VCollapseItem from '../src/CollapseItem.vue'
 import { ref } from 'vue'
 
 describe('Collapse.vue', () => {

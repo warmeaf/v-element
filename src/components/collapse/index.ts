@@ -1,6 +1,6 @@
 import type { App } from 'vue'
-import VCollapse from './Collapse.vue'
-import VCollapseItem from './CollapseItem.vue'
+import VCollapse from './src/Collapse.vue'
+import VCollapseItem from './src/CollapseItem.vue'
 
 VCollapse.install = (app: App) => {
   app.component(VCollapse.name as string, VCollapse)
@@ -11,4 +11,4 @@ VCollapseItem.install = (app: App) => {
 
 export default VCollapse
 export { VCollapseItem }
-export * from './types'
+export * from './src/types'

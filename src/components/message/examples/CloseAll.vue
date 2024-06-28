@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import { createMessage, closeAll } from '@/components/message/method'
-import VButton from '@/components/button/Button.vue'
+import { createMessage, closeAll } from '@/components/message/src/method'
+import VButton from '@/components/button/src/Button.vue'
 const open = () => {
   createMessage({ message: 'hello world1', duration: 0 })
   createMessage({ message: 'hello world2', duration: 0 })

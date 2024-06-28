@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import { createMessage } from '@/components/message/method'
-import VButton from '@/components/button/Button.vue'
+import { createMessage } from '@/components/message/src/method'
+import VButton from '@/components/button/src/Button.vue'
 const open = (type) => {
   createMessage({ message: 'hello world', type })
 }

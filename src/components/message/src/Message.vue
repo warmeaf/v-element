@@ -31,10 +31,10 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from 'vue'
 import type { MessageProps } from './types'
-import RenderVnode from '../common/RenderVnode'
-import VIcon from '../icon/Icon.vue'
+import RenderVnode from '../../common/RenderVnode'
+import VIcon from '@/components/icon/src/Icon.vue'
 import { getLastBottomOffset } from './method'
-import useEventListener from '../..//hooks/useEventListener'
+import useEventListener from '../../../hooks/useEventListener'
 
 defineOptions({
   name: 'VMessage'

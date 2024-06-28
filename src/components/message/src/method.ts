@@ -9,7 +9,7 @@
 import type { CreateMessageProps, MessageContext } from './types'
 import { h, render, shallowReactive } from 'vue'
 import Message from './Message.vue'
-import useZIndex from '../../hooks/useZIndex'
+import useZIndex from '../../../hooks/useZIndex'
 
 let seed = 0
 const instances: MessageContext[] = shallowReactive([])
@@ -57,7 +57,7 @@ export const createMessage = (props: CreateMessageProps) => {
     vnode,
     props: newProps,
     vm: vnode.component!,
-    destory: manualDestroy,
+    destory: manualDestroy
   }
   instances.push(instance)
   return instance

@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import Button from '@/components/button/Button.vue'
+import Button from '@/components/button/src/Button.vue'
 </script>
 <template>
   <div class="block disabled">

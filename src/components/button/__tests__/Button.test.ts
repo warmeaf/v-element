@@ -1,8 +1,8 @@
 import { describe, test, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Button from '../../button/Button.vue'
+import Button from '../src/Button.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import VIcon from '../../../components/icon/Icon.vue'
+import VIcon from '../../icon/src/Icon.vue'
 
 describe('Button.vue', () => {
   test('basic button', () => {

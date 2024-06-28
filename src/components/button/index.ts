@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import VButton from './Button.vue'
+import VButton from './src/Button.vue'
 
 VButton.install = (app: App) => {
   app.component(VButton.name as string, VButton)
@@ -7,4 +7,4 @@ VButton.install = (app: App) => {
 
 export default VButton
 // 导出类型文件
-export * from './props'
+export * from './src/props'

@@ -20,4 +20,7 @@ export interface MessageContext {
   destory: () => void
 }
 
-export type CreateMessageProps = Omit<MessageProps, 'onDestroy' | 'id' | 'zIndex'>
+export type CreateMessageProps = Omit<
+  MessageProps,
+  'onDestroy' | 'id' | 'zIndex'
+>

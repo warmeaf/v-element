@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref, onMounted, h, computed } from 'vue'
-import VButton from '@/components/button/Button.vue'
-import VCollapse from '@/components/collapse/Collapse.vue'
-import VCollapseItem from '@/components/collapse/CollapseItem.vue'
-import VIcon from '@/components/icon/Icon.vue'
-import VTooltip from '@/components/tooltip/Tooltip.vue'
+import VButton from '@/components/button/src/Button.vue'
+import VCollapse from '@/components/collapse/src/Collapse.vue'
+import VCollapseItem from '@/components/collapse/src/CollapseItem.vue'
+import VIcon from '@/components/icon/src/Icon.vue'
+import VTooltip from '@/components/tooltip/src/Tooltip.vue'
 // import VDropdown from '@/components/dropdown/Dropdown.vue'
-import VDropdown from '@/components/dropdown/Dropdown'
-import type { MenuOption } from '@/components/dropdown/types'
+import VDropdown from '@/components/dropdown/src/Dropdown'
+import type { MenuOption } from '@/components/dropdown/src/types'
 // import VMessage from '@/components/message/Message.vue'
-import { createMessage } from '@/components/message/method'
+import { createMessage } from '@/components/message/src/method'
 
 // 为什么这么写？参考：https://www.douyin.com/user/self?modal_id=7251216368719220023&showTab=favorite_collection
 const buttonRef = ref<InstanceType<typeof VButton> | null>()

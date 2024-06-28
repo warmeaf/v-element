@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import { ref } from 'vue'
-import VCollapse from '@/components/collapse/Collapse.vue'
-import VCollapseItem from '@/components/collapse/CollapseItem.vue'
+import VCollapse from '@/components/collapse/src/Collapse.vue'
+import VCollapseItem from '@/components/collapse/src/CollapseItem.vue'
 const openedValue = ref('a')
 </script>
 <template>
