@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import { createMessage } from '@/components/message/method'
 import VButton from '@/components/button/Button.vue'

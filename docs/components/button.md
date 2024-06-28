@@ -11,31 +11,31 @@ description: Button 组件的文档
 
 使用 `type`、`plain`、`round` 和 `circle` 来定义按钮的样式。
 
-<preview path="../examples/Button/Basic.vue" title="基础用法" description="Button 组件的基础用法"></preview>
+<preview path="../../src/components/button/examples/Basic.vue" title="基础用法" description="Button 组件的基础用法"></preview>
 
 ## 禁用状态
 
 使用 `disabled` 属性来定义按钮是否被禁用
 
-<preview path="../examples/Button/Disabled.vue" title="禁用状态" description="Button 组件的禁用状态"></preview>
+<preview path="../../src/components/button/examples/Disabled.vue" title="禁用状态" description="Button 组件的禁用状态"></preview>
 
 ## 图标按钮
 
 使用 `icon` 属性来为按钮添加图标。图标名称请看 fontawesome 官网 [https://fontawesome.com/icons](https://fontawesome.com/icons)
 
-<preview path="../examples/Button/Icon.vue" title="图标按钮" description="Button 组件的图标按钮"></preview>
+<preview path="../../src/components/button/examples/Icon.vue" title="图标按钮" description="Button 组件的图标按钮"></preview>
 
 ## 加载状态按钮
 
 通过设置 `loading` 属性为 true 来显示正在加载的状态。
 
-<preview path="../examples/Button/Loading.vue" title="加载状态按钮" description="Button 组件的加载状态按钮"></preview>
+<preview path="../../src/components/button/examples/Loading.vue" title="加载状态按钮" description="Button 组件的加载状态按钮"></preview>
 
 ## 不同大小的按钮
 
 通过设置 `size` 属性为 `small` | `large` 来调整图标的大小。
 
-<preview path="../examples/Button/Size.vue" title="不同大小的按钮" description="Button 组件的不同大小的按钮"></preview>
+<preview path="../../src/components/button/examples/Size.vue" title="不同大小的按钮" description="Button 组件的不同大小的按钮"></preview>
 
 ### Button Attributes
 
