@@ -1,6 +1,7 @@
 import { describe, test, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import VInput from '../src/Input.vue'
+import { ref, nextTick } from 'vue'
 
 describe('Input 组件', () => {
   test('基本展示-针对动态 class', () => {
@@ -44,7 +45,7 @@ describe('Input 组件', () => {
     expect(wrapper.find('.v-input').classes()).toContain('is-suffix')
   })
 
-  test('基本展示-针对 V-if', () => {
+  test('基本展示-针对 V-if 和 slots', () => {
     // 针对 V-if 是否渲染正确的标签以及内容
     // 针对 slots，是否渲染对应的 slots 内容
 
@@ -117,5 +118,33 @@ describe('Input 组件', () => {
     expect(wrapper.find('.v-input-02').find('.v-input__suffix').text()).toBe(
       'suffix'
     )
+  })
+
+  test('支持 v-model', async () => {
+    const value = ref('')
+    const template = `
+      <v-input ref="input" v-model="value" />
+    `
+    const wrapper = mount({
+      components: {
+        VInput
+      },
+      template,
+      setup() {
+        return {
+          value
+        }
+      }
+    })
+
+    value.value = '123'
+    await nextTick()
+    expect(wrapper.findComponent(VInput).props('modelValue')).toBe('123')
+    expect(wrapper.get('input').element.value).toBe('123')
+
+    // setValue 模拟输入
+    await wrapper.get('input').setValue('456')
+    expect(value.value).toBe('456')
+    expect(wrapper.findComponent(VInput).props('modelValue')).toBe('456')
   })
 })
