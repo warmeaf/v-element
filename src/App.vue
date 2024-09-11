@@ -10,6 +10,7 @@ import VDropdown from '@/components/dropdown/src/Dropdown'
 import type { MenuOption } from '@/components/dropdown/src/types'
 // import VMessage from '@/components/message/Message.vue'
 import { createMessage } from '@/components/message/src/method'
+import VInput from '@/components/input/src/Input.vue'
 
 // 为什么这么写？参考：https://www.douyin.com/user/self?modal_id=7251216368719220023&showTab=favorite_collection
 const buttonRef = ref<InstanceType<typeof VButton> | null>()
@@ -100,6 +101,8 @@ const menuOptions = ref<MenuOption[]>([
     divided: true
   }
 ])
+
+const value = ref('')
 </script>
 
 <template>
@@ -173,6 +176,7 @@ const menuOptions = ref<MenuOption[]>([
 
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">message组件</div>
   <!-- <v-message message="hello" :duration="0" show-close></v-message> -->
+  <v-input v-model="value" clearable />
 </template>
 
 <style scoped></style>

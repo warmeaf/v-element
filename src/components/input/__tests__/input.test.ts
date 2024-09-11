@@ -147,4 +147,50 @@ describe('Input 组件', () => {
     expect(value.value).toBe('456')
     expect(wrapper.findComponent(VInput).props('modelValue')).toBe('456')
   })
+
+  // 支持 clearable，
+  // 设置 clearable 为 true
+  // 当输入框有值，且鼠标移入输入框或聚焦输入框时，显示清除图标
+  // 当输入框有值，且点击清除图标时，清空输入框的值
+  // 当输入框有值，且输入框聚焦，鼠标移出仍然显示清除图标
+  test('支持 clearable', async () => {
+    const value = ref('')
+    const template = `
+      <v-input v-model="value" clearable />
+    `
+    const wrapper = mount(
+      {
+        components: {
+          VInput
+        },
+        template,
+        setup() {
+          return { value }
+        }
+      },
+      {
+        global: {
+          stubs: ['VIcon']
+        }
+      }
+    )
+
+    // 初始状态下不应显示清除图标
+    expect(wrapper.find('.v-input__clear').exists()).toBe(false)
+    // 输入框输入，显示清除图标
+    await wrapper.get('input').setValue('456')
+    await wrapper.find('input').trigger('focus')
+    expect(wrapper.find('.v-input__clear').exists()).toBe(true)
+    // 点击清除图标清空值
+    await wrapper.find('.v-input__clear').trigger('click')
+    expect(wrapper.get('input').element.value).toBe('')
+    // 当输入框有值，输入框失去焦点，鼠标进入显示清除图标
+    await wrapper.get('input').setValue('456')
+    await wrapper.find('input').trigger('blur')
+    await wrapper.find('.v-input').trigger('mouseenter')
+    expect(wrapper.find('.v-input__clear').exists()).toBe(true)
+    // 当输入框有值，输入框失去焦点，鼠标移出输入框，不显示清除图标
+    await wrapper.find('.v-input').trigger('mouseleave')
+    expect(wrapper.find('.v-input__clear').exists()).toBe(false)
+  })
 })
