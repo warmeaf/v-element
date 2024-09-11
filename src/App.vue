@@ -176,7 +176,7 @@ const value = ref('')
 
   <div class="mt-4 text-3xl font-bold underline bg-amber-500">message组件</div>
   <!-- <v-message message="hello" :duration="0" show-close></v-message> -->
-  <v-input v-model="value" clearable />
+  <v-input v-model="value" type="password" clearable show-password />
 </template>
 
 <style scoped></style>

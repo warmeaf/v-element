@@ -193,4 +193,46 @@ describe('Input 组件', () => {
     await wrapper.find('.v-input').trigger('mouseleave')
     expect(wrapper.find('.v-input__clear').exists()).toBe(false)
   })
+
+  // 可切换显示隐藏的密码框
+  // 设置 type 为 password
+  // 设置 show-password 为 true
+  // 输入框有值，默认显示隐藏图标
+  // 当点击显示隐藏图标时，切换 type 为 text 或 password
+  test('支持 password', async () => {
+    const value = ref('')
+    const template = `
+      <v-input v-model="value" type="password" show-password/>
+    `
+    const wrapper = mount(
+      {
+        components: {
+          VInput
+        },
+        template,
+        setup() {
+          return { value }
+        }
+      },
+      {
+        global: {
+          stubs: ['VIcon']
+        }
+      }
+    )
+
+    // 初始状态下 type 为 password
+    expect(wrapper.find('input').attributes('type')).toBe('password')
+    // 输入框没值，不显示隐藏图标
+    expect(wrapper.find('.v-input__show-password').exists()).toBe(false)
+    // 输入框有值，默认显示隐藏图标
+    await wrapper.get('input').setValue('23214')
+    expect(wrapper.find('.v-input__show-password').exists()).toBe(true)
+    // 点击显示隐藏图标，切换 type 为 text
+    await wrapper.find('.v-input__show-password').trigger('click')
+    expect(wrapper.find('input').attributes('type')).toBe('text')
+    // 再次点击显示隐藏图标，切换 type 为 password
+    await wrapper.find('.v-input__show-password').trigger('click')
+    expect(wrapper.find('input').attributes('type')).toBe('password')
+  })
 })

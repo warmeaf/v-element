@@ -27,7 +27,7 @@
         <!-- input -->
         <input
           class="v-input__inner"
-          :type="type"
+          :type="typeComputed"
           :disabled="disabled"
           :value="innerValue"
           @input="handleInput"
@@ -36,6 +36,13 @@
         />
         <span v-if="showClearIcon" class="v-input__clear" @click="clearInput">
           <v-icon icon="circle-xmark" />
+        </span>
+        <span
+          v-if="showPasswordIcon"
+          class="v-input__show-password"
+          @click="togglePasswordVisibility"
+        >
+          <v-icon :icon="passwordVisible ? 'eye' : 'eye-slash'" />
         </span>
         <!-- suffix slot -->
         <span v-if="$slots.suffix" class="v-input__suffix">
@@ -66,15 +73,35 @@ defineOptions({
 const props = withDefaults(defineProps<InputProps>(), {
   type: 'text'
 })
+
 const innerValue = computed(() => props.modelValue)
-const showClearIcon = computed(() => {
-  return (
-    props.clearable && !!innerValue.value && (isFocused.value || hovering.value)
-  )
-})
 const isFocused = ref(false)
 // 输入框是否处于 hover 状态
 const hovering = ref(false)
+const passwordVisible = ref(false)
+
+const showClearIcon = computed(() => {
+  return (
+    props.clearable &&
+    !!innerValue.value &&
+    !props.disabled &&
+    (isFocused.value || hovering.value)
+  )
+})
+const typeComputed = computed(() => {
+  if (props.type === 'password') {
+    return passwordVisible.value ? 'text' : 'password'
+  }
+  return props.type
+})
+const showPasswordIcon = computed(() => {
+  return (
+    props.type === 'password' &&
+    props.showPassword &&
+    !props.disabled &&
+    !!innerValue.value
+  )
+})
 
 const emits = defineEmits<InputEmits>()
 const handleInput = (e: Event) => {
@@ -96,6 +123,10 @@ const handleBlur = () => {
 }
 const clearInput = () => {
   emits('update:modelValue', '')
+}
+
+const togglePasswordVisibility = () => {
+  passwordVisible.value = !passwordVisible.value
 }
 </script>
 
