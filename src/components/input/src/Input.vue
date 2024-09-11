@@ -34,19 +34,22 @@
           @focus="handleFocus"
           @blur="handleBlur"
         />
-        <span v-if="showClearIcon" class="v-input__clear" @click="clearInput">
-          <v-icon icon="circle-xmark" />
-        </span>
-        <span
-          v-if="showPasswordIcon"
-          class="v-input__show-password"
-          @click="togglePasswordVisibility"
-        >
-          <v-icon :icon="passwordVisible ? 'eye' : 'eye-slash'" />
-        </span>
         <!-- suffix slot -->
-        <span v-if="$slots.suffix" class="v-input__suffix">
+        <span
+          v-if="$slots.suffix || showPasswordIcon || showClearIcon"
+          class="v-input__suffix"
+        >
           <slot name="suffix" />
+          <span
+            v-if="showPasswordIcon"
+            class="v-input__show-password"
+            @click="togglePasswordVisibility"
+          >
+            <v-icon :icon="passwordVisible ? 'eye' : 'eye-slash'" />
+          </span>
+          <span v-if="showClearIcon" class="v-input__clear" @click="clearInput">
+            <v-icon icon="circle-xmark" />
+          </span>
         </span>
       </div>
       <!-- append slot -->
