@@ -1,5 +1,5 @@
 export interface InputProps {
-  modelValue?: string
+  modelValue?: string | number
   type?: 'text' | 'password' | 'textarea'
   size?: 'large' | 'small'
   clearable?: boolean
@@ -8,10 +8,10 @@ export interface InputProps {
 }
 
 export interface InputEmits {
-  (e: 'update:modelValue', value: string): void
-  (e: 'input', value: string): void
-  (e: 'change', value: string): void
+  (e: 'update:modelValue', value: string | number): void
+  (e: 'input', value: string | number): void
+  (e: 'change', value: string | number): void
   (e: 'clear'): void
-  (e: 'focus'): void
-  (e: 'blur'): void
+  (e: 'focus', event: FocusEvent): void
+  (e: 'blur', event: FocusEvent): void
 }

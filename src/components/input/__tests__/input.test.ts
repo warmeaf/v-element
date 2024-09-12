@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import VInput from '../src/Input.vue'
 import { ref, nextTick } from 'vue'
@@ -234,5 +234,91 @@ describe('Input 组件', () => {
     // 再次点击显示隐藏图标，切换 type 为 password
     await wrapper.find('.v-input__show-password').trigger('click')
     expect(wrapper.find('input').attributes('type')).toBe('password')
+  })
+
+  // 事件支持
+  // 支持 input 事件
+  // 支持 focus 事件
+  // 支持 blur 事件
+  // 支持 change 事件,仅当 modelValue 改变时，当输入框失去焦点或用户按Enter时触发
+  // 支持 clear 事件
+  test('支持事件', async () => {
+    const value = ref<string | number>('')
+    const onInput = vi.fn()
+    const onFocus = vi.fn()
+    const onBlur = vi.fn()
+    const onChange = vi.fn()
+    const onClear = vi.fn()
+
+    const template = `
+      <v-input v-model="value" clearable 
+        @input="onInput" 
+        @focus="onFocus" 
+        @blur="onBlur" 
+        @change="onChange" 
+        @clear="onClear" />
+    `
+
+    const wrapper = mount(
+      {
+        components: {
+          VInput
+        },
+        template,
+        setup() {
+          return { value, onInput, onFocus, onBlur, onChange, onClear }
+        }
+      },
+      {
+        global: {
+          stubs: ['VIcon']
+        }
+      }
+    )
+
+    const input = wrapper.find('input')
+
+    // 测试 input 事件
+    await input.setValue('test')
+    expect(onInput).toHaveBeenCalledTimes(1)
+    expect(value.value).toBe('test')
+
+    // 测试 focus 事件
+    await input.trigger('focus')
+    expect(onFocus).toHaveBeenCalledTimes(1)
+
+    // 测试 blur 事件
+    await input.trigger('blur')
+    expect(onBlur).toHaveBeenCalledTimes(1)
+
+    // 测试 change 事件
+    // 重置 onChange 计数
+    onChange.mockClear()
+    // 1. 输入新值并失去焦点时触发
+    await input.setValue('new value')
+    await input.trigger('blur')
+    expect(onChange).toHaveBeenCalledTimes(1)
+    onChange.mockClear()
+    // 2. 输入新值并按下 Enter 键时触发
+    await input.setValue('another value')
+    await input.trigger('keyup', { key: 'Enter' })
+    expect(onChange).toHaveBeenCalledTimes(1)
+    // 3. 失去焦点，值没有改变时不触发
+    await input.trigger('blur')
+    // 计数不变
+    expect(onChange).toHaveBeenCalledTimes(1)
+    // 4. 回车，值没有改变时不触发
+    await input.trigger('keyup', { key: 'Enter' })
+    // 计数不变
+    expect(onChange).toHaveBeenCalledTimes(1)
+    // 5. 输入新值，没有 blur 和 enter 时，计数不变
+    await input.setValue('new new value')
+    expect(onChange).toHaveBeenCalledTimes(1)
+
+    // 测试 clear 事件
+    await input.trigger('focus')
+    await wrapper.find('.v-input__clear').trigger('click')
+    expect(onClear).toHaveBeenCalledTimes(1)
+    expect(value.value).toBe('')
   })
 })

@@ -33,6 +33,7 @@
           @input="handleInput"
           @focus="handleFocus"
           @blur="handleBlur"
+          @keyup="handleKeyup"
         />
         <!-- suffix slot -->
         <span
@@ -74,10 +75,12 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<InputProps>(), {
-  type: 'text'
+  type: 'text',
+  modelValue: ''
 })
 
 const innerValue = computed(() => props.modelValue)
+const lastEmittedValue = ref(props.modelValue)
 const isFocused = ref(false)
 // 输入框是否处于 hover 状态
 const hovering = ref(false)
@@ -109,7 +112,9 @@ const showPasswordIcon = computed(() => {
 const emits = defineEmits<InputEmits>()
 const handleInput = (e: Event) => {
   const target = e.target as HTMLInputElement
-  emits('update:modelValue', target.value)
+  const value = target.value
+  emits('update:modelValue', value)
+  emits('input', value)
 }
 
 const handleMouseEnter = () => {
@@ -118,14 +123,29 @@ const handleMouseEnter = () => {
 const handleMouseLeave = () => {
   hovering.value = false
 }
-const handleFocus = () => {
+const handleFocus = (e: FocusEvent) => {
   isFocused.value = true
+  emits('focus', e)
 }
-const handleBlur = () => {
+const handleBlur = (e: FocusEvent) => {
   isFocused.value = false
+  emits('blur', e)
+  handleChange()
 }
 const clearInput = () => {
   emits('update:modelValue', '')
+  emits('clear')
+}
+const handleKeyup = (event: KeyboardEvent) => {
+  if (event.key === 'Enter') {
+    handleChange()
+  }
+}
+const handleChange = () => {
+  if (innerValue.value !== lastEmittedValue.value) {
+    emits('change', innerValue.value)
+    lastEmittedValue.value = innerValue.value
+  }
 }
 
 const togglePasswordVisibility = () => {
